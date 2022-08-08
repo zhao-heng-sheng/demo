@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let name = "win赵恒盛";
+    let obj={
+      name:"赵恒盛",
+      age:23,
+      gender:"男"
+    };
+    let fun =function(name,age){
+      console.log(this);
+      console.log(this.name);
+      return {
+        name:name,
+        age:age
+      }
+    }
+    fun.call(obj,'张小华',22);
+    // console.log(name);
+    Function.prototype.newCall = function(){
+      console.log(arguments);
+      let ctx = arguments[0];
+      let args = [];
+      for(let i=1;i<arguments.length;i++){
+        args.push(arguments[i]);
+      }
+      console.log(this);
+      ctx.fn = this;
+      let result=ctx.fn(...args);
+      delete ctx.fn;
+      return result;
+    }
+    console.log(fun.newCall(obj,"赵小龙",23));
+  </script>
+</body>
+</html>

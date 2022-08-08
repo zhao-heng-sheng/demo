@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>mvvm</title>
+</head>
+<body>
+  
+  <div id="app">
+    <h1>{{song}}</h1>
+    <p>《{{album.name}}》是{{singer}}2005年11月发行的专辑</p>
+    <p>主打歌为{{album.theme}}</p>
+    <p>作词人为{{singer}}等人</p>
+    为您弹奏肖邦的{{album.theme}}
+  </div>
+  <script src="mvvm.js"></script>
+  <script>
+    // let obj = {};
+    // let song = "发如雪";
+    // obj.singer = "周杰伦";
+
+    // Object.defineProperty(obj,'music',{
+    //   //1.value :"七里香" 
+    //   configurable:true,  //可以配置对象，删除属性
+    //   // writable:true,   //可以修改对象
+    //   enumerable:true,     //可以枚举
+    //   // get , set 设置时不能设置writable和value，他们代替了二者且是互斥的
+    //   get(){          //获取boj.music的时候会调用get方法
+    //     return song;
+    //   },
+    //   set(val){       //将修改的值重新赋给song
+    //     song = val;
+    //   }
+    // });
+    // //下面打印部分分别是对应代码写入顺序执行
+    // console.log(obj);
+    // debugger;
+    // delete obj.music; //如果想对obj里的属性进行删除，configurable要设为true
+    // console.log(obj); //
+    // obj.music = '听妈妈的话'; //如果想对obj里的属性进行修改，writable要设为true
+    // console.log(obj);
+
+    // for(let key in obj){
+    //   // 默认情况下通过defineProperty定义的属性是不能被枚举的
+    //   // 需要设置enumerablObject.defineProperty()e为true才可以
+    //   //不然是拿不到music这个属性的，只能拿到singer
+    //   console.log(key);
+    // }
+    // console.log(obj.music);
+    // obj.music = '夜曲';   //调用set设置新的值
+    // console.log(obj.music);
+
+
+    // let mvvm = new Mvvm({
+    //   el:"#app",
+    //   data:{  //Object.defineProperty(obj,'song','发如雪')
+    //     song:"发如雪",
+    //     album:{
+    //       name:"十一月的萧邦",
+    //       theme:"夜曲"
+    //     },
+    //     singer:"周杰伦"
+    //   }
+    // });
+    let mvvm = new Mvvm({
+      el:"#app",
+      data:{
+        a:{
+          b:1
+        },
+        c:2
+      }
+    })
+    console.log(mvvm);
+    console.log(mvvm.a);
+  </script>
+</body>
+</html>
