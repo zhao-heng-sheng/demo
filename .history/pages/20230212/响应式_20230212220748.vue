@@ -1,0 +1,27 @@
+<template>
+    <div>
+
+    </div>
+</template>
+
+<script setup lang="ts">
+let a =12;
+let aObj = {
+    a:12
+}
+Object.defineProperty(aObj,'a',{
+    get(){
+        console.log('有人读取了a')
+        return a
+    },
+    set(val){
+        console.log('有人要改a')
+        a = val;
+        console.log(val)
+    }
+})
+</script>
+
+<style scoped>
+
+</style>
