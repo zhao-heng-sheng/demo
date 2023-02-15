@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        解析HTML 加载样式 布局 分层 生成绘制指令 分块 光栅化 呈现
     </div>
 </template>
 
@@ -51,6 +51,35 @@ function fun(name:string,gender:string='男',...rest:any[]):number{
 }
 let fun2 = (name:string)=>{return name.length}
 let fun3:(name:string)=>number = (name)=>{return name.length} //不推荐这样写 可以用type抽离出来
+
+/**
+ * 类  class
+ */
+class Foo{
+    public a=1; //此类成员在类，类的实例，子类中都能被访问
+    private b= 1;   //仅能在类的内部被访问
+    protected c= 1; //仅能在类与子类中被访问
+    constructor(public d:string,){}   ;  //d会直接作为类的成员，不用手动赋值
+    static e = 1;   //静态成员，无法通过this访问，只能Foo.e
+}
+//继承
+class Base extends Foo{}
+
+/**
+ * 内置类型
+ * any/unknown/never
+ */
+let inA:any //全部类型
+let inB:unknown //未知类型
+let inC:never//什么都没有的类型
+(inB as {[x:string]:'foo'}).foo //类型断言  表示在这里使用 一定是断言的类型
+
+/**
+ * 类型工具
+ */
+type asA<T> = T|200|404|300;  //类型别名  用于对特定类型进行封装复用  T:泛型
+
+
 </script>
 
 <style scoped>
