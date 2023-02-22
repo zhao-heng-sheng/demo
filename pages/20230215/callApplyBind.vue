@@ -1,8 +1,9 @@
 <template>
-    <div></div>
+    <div>{{ md }}</div>
 </template>
 
 <script setup>
+import md from "@/public/md/callBind.md"
 /**
  * call
  *  接收的第一个参数是
@@ -37,7 +38,7 @@ let obj = {
     age: 18,
 }
 let obj2 = {
-    name: "啪啪",
+    name: "噼里",
     age: 19,
 }
 // //myCall的上下文对象是fun
@@ -45,8 +46,8 @@ let obj2 = {
 
 // bind
 Function.prototype.myBind = function (context, ...args1) {
+    // 这里使用箭头函数，this指向的是myBind的作用域
     return (...args2) => {
-        console.log(this)
         return this.call(context, ...args1, ...args2)
     }
 }
