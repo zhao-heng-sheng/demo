@@ -13,22 +13,31 @@
 
 <script setup>
 let Fn = function () {
+    this.name = 'xxx'
     this.test1 = function () {
         console.log("test1")
     }
 }
 
-Fn.prototype.test2 = function () {
-    console.log("test2")
-}
-Fn = new Fn()
-console.log(Fn)
+// Fn.prototype.test2 = function () {
+//     console.log("test2")
+// }
+let fn = new Fn()
+console.log(fn)
 
 // let fn = new Fn()
 // console.log(fn)
 // console.log(fn.)
 // console.log(fn)
 // let fn =
+
+// let anotherObject  ={
+//     a:2
+// }
+// let myObject = Object.create(anotherObject)
+// console.log(myObject)
+
+
 </script>
 
 <style lang="scss" scoped></style>
