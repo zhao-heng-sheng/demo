@@ -69,6 +69,7 @@ fn()
 let fn2 = fun.myBind(obj2)
 let obj = new fn2()
 console.log(obj)
+console.log()
 </script>
 
 <style lang="scss" scoped></style>
