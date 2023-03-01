@@ -1,4 +1,6 @@
-<template></template>
+<template>
+    <div></div>
+</template>
 
 <script setup>
 /**
@@ -7,8 +9,8 @@
  */
 // //call接受1个指定对象和多个参数
 Function.prototype.myCall = function (context, ...args) {
-    console.log(context)
-    console.log(this)
+    console.log('myCallThis',this)
+    console.log('myCallContext',context)
   	//传入的是null或undefined 指向全局
   	if(context===null||context===undefined) context = window
   	//如果传入的是原始类型值就包装一下
@@ -36,34 +38,38 @@ Function.prototype.myCall = function (context, ...args) {
 //     name: "铛铛",
 //     age: 18,
 // }
-// let obj2 = {
-//     name: "噼里",
-//     age: 19,
-// }
+// let arr = [1,2,3]
+// fun.myCall(arr)
 // //myCall的上下文对象是fun
 // fun.myCall(obj, 1, 2, 3)//this {name: '铛铛', age: 18, Symbol(): ƒ}   args 1 2 3
 
 // bind
-Function.prototype.myBind = function (context) {
-    return () => {
-        //箭头函数没有this,这里this是myBind的this
-        //形成了一个闭包
-        return this.call(context)
+Function.prototype.myBind = function (context, ...args1) {
+    let _this = this;
+    return function(...args2){
+        console.log(context)
+        return _this.call(context, ...args1, ...args2)
     }
 }
-let obj = {
+Date.prototype
+let fun = function (a, b, c) {
+    console.log("this", this)
+    console.log("args", a, b, c)
+}
+let obj1 = {
     name: "叮叮",
-    age: "11",
+    age: 18,
 }
 let obj2 = {
     name: "铛铛",
-    age: "19",
+    age: 23,
 }
-let fun = function () {
-    console.log(this)
-}
-let fn = fun.myBind(obj)
-fn.myCall(obj2)
+let fn = fun.myBind(obj1)
+fn()
+let fn2 = fun.myBind(obj2)
+let obj = new fn2()
+console.log(obj)
+console.log()
 </script>
 
 <style lang="scss" scoped></style>
