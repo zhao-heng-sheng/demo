@@ -47,11 +47,9 @@ Function.prototype.myCall = function (context, ...args) {
 Function.prototype.myBind = function (context, ...args1) {
     let _this = this;
     return function(...args2){
-        console.log(context)
         return _this.call(context, ...args1, ...args2)
     }
 }
-Date.prototype
 let fun = function (a, b, c) {
     console.log("this", this)
     console.log("args", a, b, c)
@@ -64,12 +62,14 @@ let obj2 = {
     name: "铛铛",
     age: 23,
 }
-let fn = fun.myBind(obj1)
-fn()
-let fn2 = fun.myBind(obj2)
-let obj = new fn2()
-console.log(obj)
-console.log()
+let fn = fun.myBind(obj1,1,2)
+fn(3)
+fn.call(obj2,4,5,6)
+// let fn2 = fun.myBind(obj2,4,5)
+// fn2(6,7)
+// let obj = new fn2()
+// console.log(obj)
+// console.log()
 </script>
 
 <style lang="scss" scoped></style>
