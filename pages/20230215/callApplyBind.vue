@@ -46,12 +46,16 @@ Function.prototype.myCall = function (context, ...args) {
 // bind
 Function.prototype.myBind = function (context, ...args1) {
     let _this = this;
-    return function(...args2){
-        return _this.call(context, ...args1, ...args2)
+    let fBound = function(...args2){
+        console.log('this',this)
+        return _this.call(this instanceof fBound ? this: context, ...args1, ...args2)
     }
+    console.log('fBound.prototype',fBound.prototype)
+    return fBound
 }
 let fun = function (a, b, c) {
-    console.log("this", this)
+    console.log("this121", this)
+    this.a = a;
     console.log("args", a, b, c)
 }
 let obj1 = {
@@ -63,11 +67,12 @@ let obj2 = {
     age: 23,
 }
 let fn = fun.myBind(obj1,1,2)
-fn(3)
-fn.call(obj2,4,5,6)
+// fn(3)   //this {name: '叮叮', age: 18}   args 1 2 3
+// fn.call(obj2,4,5,6) //this {name: '叮叮', age: 18}   args 1 2 4
 // let fn2 = fun.myBind(obj2,4,5)
 // fn2(6,7)
-// let obj = new fn2()
+let obj = new fn()
+console.log(obj)
 // console.log(obj)
 // console.log()
 </script>
