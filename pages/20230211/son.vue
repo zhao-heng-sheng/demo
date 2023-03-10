@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import {defineEmits} from 'vue'
 console.log(defineEmits)
 </script>
 

@@ -11,12 +11,12 @@
 </template>
 
 <script setup>
-// let myNew = function(fun,...args){
-//     let obj = {}
-//     obj.__proto__ = fun.prototype
-//     let res = fun.call(obj,...args)
-//     return res && res instanceof Object ? res : obj
-// }
+let myNew = function(fun,...args){
+    let obj = {}
+    obj.__proto__ = fun.prototype
+    let res = fun.call(obj,...args)
+    return res && res instanceof Object ? res : obj
+}
 
 function fn(){
     let name = '叮叮'

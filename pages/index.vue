@@ -7,7 +7,6 @@
 </template>
 
 <script setup>
-
 const router = useRouter()
 let list =computed(()=>{
     return router.options.routes.reverse()
