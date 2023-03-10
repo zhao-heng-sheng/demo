@@ -51,12 +51,17 @@ Function.prototype.myBind = function (context, ...args1) {
         return _this.call(this instanceof fBound ? this: context, ...args1, ...args2)
     }
     console.log('fBound.prototype',fBound.prototype)
+    console.log('this.prototype',this.prototype)
     return fBound
 }
 let fun = function (a, b, c) {
     console.log("this121", this)
     this.a = a;
+    this.b = b;
     console.log("args", a, b, c)
+}
+fun.prototype.hello = function(){
+    console.log('hello')
 }
 let obj1 = {
     name: "叮叮",
