@@ -11,20 +11,24 @@
 </template>
 
 <script setup>
-let myNew = function(fun,...args){
-    let obj = {}
-    obj.__proto__ = fun.prototype
-    let res = fun.call(obj,...args)
-    return res && res instanceof Object ? res : obj
+// let myNew = function(fun,...args){
+//     let obj = {}
+//     obj.__proto__ = fun.prototype
+//     let res = fun.call(obj,...args)
+//     return res && res instanceof Object ? res : obj
+// }
+let a = Symbol('[[prototype]]')
+function Person(name,age){
+    this.name = name
+    this.age = age
 }
-
-function fn(){
-    let name = '叮叮'
-    console.log(arguments)
-}
-fn(1,2,3)
+Person.prototype[a] = function(){console.log('hello')}
+let obj = new Person('滴滴',18)
+console.log(obj)
+console.log(obj.__proto__)
+console.log(Object.getPrototypeOf(obj))
+console.log(Person.prototype===obj.__proto__)
 </script>
-
 <style lang="scss" scoped>
 
 </style>

@@ -52,13 +52,14 @@ Function.prototype.myBind = function (context, ...args1) {
     }
     console.log('fBound.prototype',fBound.prototype)
     console.log('this.prototype',this.prototype)
+    // fBound.prototype = this.prototype
     return fBound
 }
 let fun = function (a, b, c) {
     console.log("this121", this)
+    console.log("args", a, b, c)
     this.a = a;
     this.b = b;
-    console.log("args", a, b, c)
 }
 fun.prototype.hello = function(){
     console.log('hello')
@@ -71,13 +72,15 @@ let obj2 = {
     name: "铛铛",
     age: 23,
 }
-let fn = fun.myBind(obj1,1,2)
+let fn = fun.myBind(obj1,1)
 // fn(3)   //this {name: '叮叮', age: 18}   args 1 2 3
 // fn.call(obj2,4,5,6) //this {name: '叮叮', age: 18}   args 1 2 4
 // let fn2 = fun.myBind(obj2,4,5)
 // fn2(6,7)
-let obj = new fn()
+let obj = new fn(2)
+let obj3 = new fn(3)
 console.log(obj)
+console.log(obj3)
 // console.log(obj)
 // console.log()
 </script>
