@@ -16,7 +16,7 @@ function CheckParam(): ParameterDecorator {
 }
 
 // {} handler 0
-// new Foo().handler("linbudu");
+new Foo().handler("linbudu");
 </script>
 
 <style scoped></style>
