@@ -24,9 +24,13 @@
   </template>
   
   <script setup lang="ts">
+  import { useCounter } from '~/store/counter';
+
+
   // 局部状态
   const counterRef = ref(Math.round(Math.random() * 1000));
   const counter = useState("counter", () => Math.round(Math.random() * 1000));
-  // 全局状态
-  const count = useCounter();
+// 全局状态
+const store = useCounter();
+const { value: count } = storeToRefs(store);
   </script>

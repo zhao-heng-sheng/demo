@@ -21,8 +21,11 @@
 </template>
 
 <script setup lang="ts">
+import { useCounter } from '~/store/counter';
+
 // 全局状态
-const count = useCounter();
+const store = useCounter();
+const { value: count } = storeToRefs(store);
 // 局部状态
 const count2 = ref(1);
 </script>
