@@ -10,14 +10,19 @@
         "postinstall": "nuxt prepare"
     },
     "devDependencies": {
+        "@huntersofbook/naive-ui-nuxt": "^1.0.0",
         "@nuxtjs/tailwindcss": "^6.7.0",
         "@types/mockjs": "^1.0.7",
         "nuxt": "^3.1.2"
     },
     "dependencies": {
+        "@pinia/nuxt": "^0.4.11",
+        "gray-matter": "^4.0.3",
         "mockjs": "^1.1.0",
         "p5": "^1.5.0",
         "qiniu-js": "^3.4.1",
+        "remark": "^14.0.3",
+        "remark-html": "^15.0.2",
         "sass": "^1.62.1"
     }
 }
