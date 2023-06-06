@@ -1,0 +1,6 @@
+const fs = require('fs')
+let ws = fs.createWriteStream('./data/观沧海.txt',{flags:'a'})
+ws.write("神龟虽寿\n")
+ws.write("犹有竟时\n")
+ws.write("腾蛇乘雾\n")
+ws.write("终为土灰\n")

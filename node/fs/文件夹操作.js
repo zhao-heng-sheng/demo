@@ -1,0 +1,10 @@
+const fs = require('fs')
+let dir = fs.readdirSync('./')
+console.log(dir)
+// fs.renameSync('./data3','./data')
+fs.mkdirSync('./html')
+fs.rmdir('html',(err)=>{
+    console.log(err)
+})
+fs.mkdirSync('./css/1/2/3',{recursive:true})
+fs.rmSync('./css',{recursive:true})
