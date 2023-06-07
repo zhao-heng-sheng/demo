@@ -18,4 +18,18 @@
   <script setup lang="ts">
     // const posts = await $fetch("/api/posts");
     const { data: posts, pending, error } = await useLazyFetch('/api/posts')
+    const appConfig = useAppConfig()
+    console.log(appConfig)
+    useHead(
+      {
+        title:'hello ',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'hello world'
+          }
+        ]
+      }
+    )
   </script>

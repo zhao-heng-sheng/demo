@@ -1,0 +1,1 @@
+import{R as p,S as o,U as i,N as t}from"./entry.160a6681.js";const e=p({title:"hello Nuxt",theme:{dark:!0,colors:{primary:"#ff0000"}}}),f={},a=o(e,f);function r(){const n=i();return n._appConfig||(n._appConfig=t(a)),n._appConfig}export{r as u};
