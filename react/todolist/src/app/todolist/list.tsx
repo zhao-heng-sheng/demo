@@ -4,7 +4,7 @@ export default function List(props) {
     return (
         <ul className="todo-main">
             {
-                todos.map((item) => <Item key={item.id} {...item} />)
+                todos.map((item: { id: any }) => <Item key={item.id} {...item} updateTodo={props.updateTodo} delTodoItem={props.delTodoItem} />)
             }
         </ul>
     )
