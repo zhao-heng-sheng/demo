@@ -56,3 +56,11 @@ export class AaaController {
         return {name: 'guang', age: 20}
     }
 }
+
+// const config = new Config({username:'xxx','password':'xxx'})
+// const dataSource = new DataSource(config)
+// const repository = new Repository(dataSource)
+// const service = new Service(repository)
+// const controller = new Controller(service)
+// const app = new App(controller)
+// app.listen(3000)
