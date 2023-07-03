@@ -16,10 +16,10 @@ const puppeteer = require("puppeteer");
                 for(let item of (await req.response().json()).data.sections){
                     listObj[item.section_id] = item;
                     listObj[item.section_id]['element'] = sectionsElement.find(async elItem=>{
-                        console.log(item.title === await (await elItem.getProperty('innerText')).jsonValue())
+                        console.log(item.title, await (await elItem.getProperty('innerText')).jsonValue())
                        return item.title === await (await elItem.getProperty('innerText')).jsonValue()
                     })
-                }
+                } 
                 // (await req.response().json()).data.sections.forEach(async item=>{
                     
                 // })
