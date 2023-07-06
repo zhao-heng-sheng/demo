@@ -20,4 +20,3 @@ const runCrawling = require("./runCrawling");
     //     });
     browser.close();
 })();
-// TODO: 创建一个爬取池，一次最多爬取5个，爬完一个后把新的加入爬取池   不过不会做，先这样吧
