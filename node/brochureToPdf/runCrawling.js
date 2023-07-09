@@ -84,13 +84,13 @@ module.exports = (browser, url) => {
                                 // resolve(`${bookTitle}--全部ok哒！`)
                                 if(isMerge){
                                     mergeArr.sort((a,b)=>a.index<b.index? -1:1)
-                                    await merge(mergeArr,`${folderPath}/${bookTitle}/${bookTitle}.pdf`,{maxBuffer:1024*1024*100},()=>console.log(`${bookTitle}--合并ok哒！`))
+                                    await merge(mergeArr,`${folderPath}/${bookTitle}/${bookTitle}.pdf`,{maxBuffer:1024*1024*1000},()=>console.log(`${bookTitle}--合并ok哒！`))
                                 }
                                 resolve(`${bookTitle}--全部ok哒！`)
                                 page.close();
                             }
                         }
-                    }, 500);
+                    }, 2500);
                 }
             }
         });
