@@ -26,7 +26,7 @@ module.exports = (browser, url) => {
                     for (let i in sectionsElement) {
                         for (let section of (await req.response().json()).data.sections) {
                             if (!listObj[section.section_id]) listObj[section.section_id] = section;
-                            if (listObj[section.section_id].title === (await (await sectionsElement[i].getProperty("innerHTML")).jsonValue())) {
+                            if (listObj[section.section_id].title === (await (await sectionsElement[i].getProperty("innerHTML")).jsonValue())||listObj[section.section_id].title === (await (await sectionsElement[i].getProperty("innerText")).jsonValue())) {
                                 listObj[section.section_id]["element"] = sectionsElement[i];
                                 listObj[section.section_id]["index"] = Number(i) + 1;
                             }
@@ -37,6 +37,7 @@ module.exports = (browser, url) => {
                 // 章节内容获取完成
                 if (req.url().indexOf("api.juejin.cn/booklet_api/v1/section/get") + 1) {
                     setTimeout(async () => {
+                        
                         // TODO:先建个死循环，直到listObj[section_id]有值
                         let { section_id } = JSON.parse(req.postData());
                         while (true) {
@@ -44,11 +45,13 @@ module.exports = (browser, url) => {
                                 break;
                             }
                         }
+                        let sectionTitle = listObj[section_id].title
+                        let sectionTitleFilter = sectionTitle.replace(/[\\/:*?"<>|]/g, "");
                         await page.evaluate((x) => {
                             let h1 = document.createElement("h1");
                             h1.appendChild(document.createTextNode(x));
                             document.querySelector(".section-page")?.prepend(h1);
-                        }, listObj[section_id].title);
+                        }, sectionTitle);
                         let md = (await req.response().json()).data.section.markdown_show;
                         let html = (await req.response().json()).data.section.content;
                         try {
@@ -61,10 +64,10 @@ module.exports = (browser, url) => {
                             fs.mkdirSync(`${folderPath}/${bookTitle}/pdf`, { recursive: true });
                             fs.mkdirSync(`${folderPath}/${bookTitle}/html`, { recursive: true });
                         }
-                        fs.writeFileSync(`${folderPath}/${bookTitle}/md/${listObj[section_id].index}.${listObj[section_id].title}.md`, md);
-                        fs.writeFileSync(`${folderPath}/${bookTitle}/html/${listObj[section_id].index}.${listObj[section_id].title}.html`, html);
-                        await page.pdf({ path: `${folderPath}/${bookTitle}/pdf/${listObj[section_id].index}.${listObj[section_id].title}.pdf`, format: "A4" });
-                        console.log(`${bookTitle}-${listObj[section_id].index}.${listObj[section_id].title}--ok哒！`)
+                        fs.writeFileSync(`${folderPath}/${bookTitle}/md/${listObj[section_id].index}.${sectionTitleFilter}.md`, md);
+                        fs.writeFileSync(`${folderPath}/${bookTitle}/html/${listObj[section_id].index}.${sectionTitleFilter}.html`, html);
+                        await page.pdf({ path: `${folderPath}/${bookTitle}/pdf/${listObj[section_id].index}.${sectionTitleFilter}.pdf`, format: "A4" });
+                        console.log(`${bookTitle}-${listObj[section_id].index}.${sectionTitleFilter}--ok哒！`)
                         listObj[section_id].isDone = true;
                         let count = 0;
                         let mergeArr = [];
@@ -90,7 +93,7 @@ module.exports = (browser, url) => {
                                 page.close();
                             }
                         }
-                    }, 2500);
+                    }, 10000);
                 }
             }
         });
