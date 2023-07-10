@@ -20,7 +20,7 @@ module.exports = (browser, url) => {
                         document.querySelector(".book-content__header")?.remove();
                         document.querySelector(".book-handle")?.remove();
                         // document.querySelector(".section-page").style.padding = "0";
-                        document.querySelector(".book-body").style.padding = "0";
+                        // document.querySelector(".book-body").style.padding = "0";
                     });
                     bookTitle = (await req.response().json()).data.booklet.base_info.title;
                     for (let i in sectionsElement) {
