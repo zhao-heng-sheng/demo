@@ -5,7 +5,7 @@ const runCrawling = require("./runCrawling");
     const browser = await puppeteer.launch({
         // headless: false,
         headless:true,
-        defaultViewport: { width: 1920, height: 5000 },
+        defaultViewport: { width: 1920, height: 199999 },
     });
     for(bookLink of bookLinks){
         let res = await runCrawling(browser,bookLink);

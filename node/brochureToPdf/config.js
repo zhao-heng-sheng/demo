@@ -4,7 +4,7 @@ module.exports = {
     folderPath: path.resolve(__dirname, "./小册"),
     // 小册链接(小册第一章的链接)
     bookLinks: [
-        'https://juejin.cn/book/7065201654273933316'
+        'https://juejin.cn/book/7049273428938850307/section/7049661680644522023'
     ],
     // 是否合并小册pdf（依赖easy-pdf-merge，需java环境）
     isMerge:true,
