@@ -21,6 +21,7 @@ module.exports = {
             session: false,
             storeId: null,
             value: "a92e9a1fe54ecae1b4ecc8f74f6e1a15",
+            v:"s"
         },
         {
             domain: ".juejin.cn",
