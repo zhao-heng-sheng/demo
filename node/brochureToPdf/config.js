@@ -3,7 +3,7 @@ module.exports = {
     // 生成的文件存放目录
     folderPath: path.resolve(__dirname, "./小册"),
     // 小册链接(小册第一章的链接)
-    bookLinks: ["https://juejin.cn/book/6844733763675488269/section/6844733763742597127?enter_from=course_center&utm_source=course_center"],
+    bookLinks: ["https://juejin.cn/book/6844733788681928712/section/6844733788795174920"],
     // 是否合并小册pdf（依赖easy-pdf-merge，需java环境）
     isMerge: false,
     // cookie: "n_mh=EFg1_mBHQbgSgSf99DQS8qIA7qY3jFf9OAFGOWaDQQk; sid_guard=654fdab6961159b9ddc71d88dd74d480%7C1678843081%7C31536000%7CThu%2C+14-Mar-2024+01%3A18%3A01+GMT; uid_tt=31ebf54cf451c8dd8203f0033281287d; uid_tt_ss=31ebf54cf451c8dd8203f0033281287d; sid_tt=654fdab6961159b9ddc71d88dd74d480; sessionid=654fdab6961159b9ddc71d88dd74d480; sessionid_ss=654fdab6961159b9ddc71d88dd74d480; sid_ucp_v1=1.0.0-KGMwOTEwOGQ2YWQzZjlmOTUzODdhZDI0YmQwN2E4MDhkMjA0MWUxM2EKFwjn9sDA_fWRBhDJucSgBhiwFDgCQO8HGgJsZiIgNjU0ZmRhYjY5NjExNTliOWRkYzcxZDg4ZGQ3NGQ0ODA; ssid_ucp_v1=1.0.0-KGMwOTEwOGQ2YWQzZjlmOTUzODdhZDI0YmQwN2E4MDhkMjA0MWUxM2EKFwjn9sDA_fWRBhDJucSgBhiwFDgCQO8HGgJsZiIgNjU0ZmRhYjY5NjExNTliOWRkYzcxZDg4ZGQ3NGQ0ODA; store-region=cn-sh; store-region-src=uid; csrf_session_id=561fec86656bac72130747c98aa051ed; _tea_utm_cache_2018={%22utm_source%22:%22gold_browser_extension%22}; _tea_utm_cache_2608={%22utm_source%22:%22gold_browser_extension%22}; msToken=-c3gZyb5THUlaAbxwOpVwCWvle84tTgzorub-wrAym-8GffqoqSbZPIH-nIENieVUFST792wu3HjEO4IsWiE2K_LZ2uGVFaCKAYrLjXbWZzwGsPOTqnb65A0u9q5q3nS",
