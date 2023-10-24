@@ -19,6 +19,8 @@ module.exports = (browser, url) => {
                         document.querySelector(".dark-mode-notification")?.remove()
                         document.querySelector(".book-content__header")?.remove()
                         document.querySelector(".book-handle")?.remove()
+                        document.querySelector(".article-catalog")?.remove()
+                        document.querySelector(".global-float-banner")?.remove()
                         // if (document.querySelector(".section-page")?.style?.padding) document.querySelector(".section-page").style.padding = "0"
                         if (document.querySelector(".book-body")?.style?.padding) document.querySelector(".book-body").style.padding = "0"
                         // document.querySelector(".book-body").style.padding = "0";
