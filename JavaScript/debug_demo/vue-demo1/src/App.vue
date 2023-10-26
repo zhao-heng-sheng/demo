@@ -12,7 +12,7 @@ export default {
     HelloWorld
   },
   mounted() {
-    debugger;
+    // debugger;
     console.log("xxx")
   },
 }

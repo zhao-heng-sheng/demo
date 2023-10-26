@@ -11,7 +11,7 @@
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}",
             "sourceMapPathOverrides": {
-                "webpack://demo/src/*": "${workspaceFolder}/src/*"
+                "webpack://vue-demo1/src/*": "${workspaceFolder}/src/*"
             }
         },
         {
