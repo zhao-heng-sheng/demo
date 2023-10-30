@@ -11,10 +11,9 @@ export default {
   components: {
     HelloWorld
   },
-  mounted() {
-    // debugger;
-    console.log("xxx")
-  },
+  mounted(){
+    console.log('111')
+  }
 }
 </script>
 

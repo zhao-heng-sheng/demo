@@ -27,6 +27,19 @@
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}",
             // "sourceMaps": false
+        },
+        {
+            "name": "Launch via NPM",
+            "request": "launch",
+            "runtimeArgs": [
+                "run-script",
+                "start"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
         }
     ]
 }
