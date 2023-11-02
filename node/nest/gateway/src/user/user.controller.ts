@@ -30,8 +30,6 @@ export class UserController {
   @Get()
   @Version('2')
   findAll2() {
-    const a: any = {};
-    console.log(a.b.c);
     return '222';
   }
 
