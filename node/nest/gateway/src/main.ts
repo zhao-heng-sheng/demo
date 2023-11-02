@@ -7,7 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule,new FastifyAdapter());
   // 接口版本化管理
   app.enableVersioning({
-    type:VersioningType.URI
+    type:VersioningType.URI,
+    defaultVersion:'1'
   })
   await app.listen(3000);
 }
