@@ -25,7 +25,7 @@ export class UserController {
   @Get('getTestName')
   @Version([VERSION_NEUTRAL, '1'])
   getTestName(){
-    return this.configService.get('TEST_VALU')
+    return this.configService.get('TEST_VALUE')
   }
 
   @Get()
