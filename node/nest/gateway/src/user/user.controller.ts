@@ -23,8 +23,10 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
   @Get('getTestName')
-  @Version([VERSION_NEUTRAL, '1'])
+  @Version('1')
   getTestName(){
+
+    return 'xxx'
     return this.configService.get('TEST_VALUE')
   }
 
