@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        'use strict'
+        let _obj = {};
+        let obj = {};
+        Object.defineProperty(obj,'a',{
+            // get(){
+            //     console.log('触发了get方法');
+            //     return _obj.a;
+            // },
+            // set(val){
+            //     console.log('触发了set方法');
+            //     _obj.a = val;
+            // }
+            configurable:false,
+            value:1,
+            writable:true,
+        })
+        obj.a = 3;
+        // Object.defineProperty(obj,'a',{
+        //     writable:false,
+        //     get(){
+        //         console.log('触发了get方法');
+        //         return _obj.a;
+        //     },
+        // })
+        obj.a = 5;
+        console.log(obj.a);
+    </script> -->
+
+    <!-- <script>
+        let obj = {
+            get a(){
+                return 2
+            },
+        };
+        Object.defineProperty(obj,'b',{
+            get(){
+                console.log(this)
+                return this.a * 2;
+            }
+        })
+        console.log(obj.b)
+
+    </script> -->
+    <!-- <script>
+        let obj = {
+            get a(){
+                return this._a;
+            },
+            set a(val){
+                this._a = val*2
+            }
+        }
+        console.log(obj.a);
+        obj.a = 3;
+        console.log(obj.a);
+        // console.log();
+    </script> -->
+    <script>
+        let randoms = {
+            [Symbol.iterator]:()=>{
+                return {
+                    next:()=> ({value:Math.random(),done:false})
+                }
+            }
+        }
+        let it = randoms[Symbol.iterator]();
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        // let randoms_pool = [];
+        // for(let n of randoms){
+        //     randoms_pool.push(n);
+        //     if(randoms_pool.length === 100) break;
+        // }
+        // console.log(randoms_pool);
+    </script>
+</body>
+</html>

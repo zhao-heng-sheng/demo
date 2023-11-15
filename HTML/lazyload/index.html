@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lazy-Load</title>
+    <style>
+        .img{
+            width:200px;
+            height:200px;
+            background-color: gray;
+        }
+        .pic{
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/1.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/2.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/3.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/4.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/5.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/6.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/7.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/8.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/9.jpg">
+        </div>
+        <div class="img">
+            <img class="pic" alt="加载中" data-src="./images/10.jpg">
+        </div>
+    </div>
+</body>
+<script src="./throttle.js"></script>
+<script src="./debounce.js"></script>
+<script defer>
+// 可视区域高度
+const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+const imgs = document.getElementsByTagName('img')
+console.log(imgs,'imgs')
+let num = 0
+function lazyload(){
+    for(let i=num;i<imgs.length;i++){
+        //可视区域高度 - 元素顶部距离可视区域顶部高度
+        let distance = viewHeight -imgs[i].getBoundingClientRect().top
+        if(distance >= 0){
+            imgs[i].src = imgs[i].getAttribute('data-src')
+            num = i+1
+        }
+    }
+}
+window.onload =()=>{
+    lazyload()
+}
+let throttle_scroll = throttle(()=>{console.log('触发了滚动事件');lazyload()},1000)
+let debounce_scroll = debounce(()=>{console.log('触发了滚动事件');lazyload()},1000)
+window.addEventListener('scroll',debounce_scroll,false)
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>js阻塞测试</title>
+        <style>
+            #container {
+                background-color: yellow;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+        <script defer>
+            var container = document.getElementById("container");
+            console.log('container', container);
+
+
+        </script>
+    </head>
+    <body>
+        <div id="container"></div>
+
+        <!-- <style>
+            #container {
+                background-color: blue;
+            }
+        </style> -->
+    </body>
+</html>
+<script defer>
+    let i = 0;
+    while (i<10000000000) {
+        i++;
+    }
+    console.log('x')
+    var container = document.getElementById("container");
+    console.log('container', container);
+    console.log('container bgColor', getComputedStyle(container).backgroundColor);
+</script>

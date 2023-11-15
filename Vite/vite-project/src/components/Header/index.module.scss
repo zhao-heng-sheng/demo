@@ -1,0 +1,16 @@
+// index.scss
+// @import '../../variable.scss'
+.header {
+    color: $theme-color;
+    text-decoration: dashed;
+}
+.x {
+    color: $theme-color;
+    .xc{
+        color:blue;
+    }
+
+}
+#p{
+    color:yellow;
+}
