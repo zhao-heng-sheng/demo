@@ -3,13 +3,14 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import autoprefixer from "autoprefixer";
 import windi from "vite-plugin-windicss";
+import svgr from "vite-plugin-svgr";
 
 // 用 normalizePath 解决 window 下的路径问题
 const variablePath = normalizePath(path.resolve("./src/variable.scss"));
 export default defineConfig({
     // root:path.join(__dirname,'src'),
 
-    plugins: [react(),windi()],
+    plugins: [react(),windi(),svgr()],
     css: {
         modules: {
             // 一般我们可以通过 generateScopedName 属性来对生成的类名进行自定义
@@ -32,4 +33,9 @@ export default defineConfig({
             ],
         },
     },
+    resolve:{
+        alias:{
+            '@assets':path.join(__dirname,'src/assets')
+        }
+    }
 });
