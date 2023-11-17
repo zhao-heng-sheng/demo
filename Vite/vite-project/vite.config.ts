@@ -4,13 +4,41 @@ import path from "path";
 import autoprefixer from "autoprefixer";
 import windi from "vite-plugin-windicss";
 import svgr from "vite-plugin-svgr";
-
+import viteImagemin from 'vite-plugin-imagemin';
+const isProduction = process.env.NODE_ENV ==='production'
+const CDN_URL = 'xxx'
 // 用 normalizePath 解决 window 下的路径问题
 const variablePath = normalizePath(path.resolve("./src/variable.scss"));
 export default defineConfig({
     // root:path.join(__dirname,'src'),
 
-    plugins: [react(),windi(),svgr()],
+    plugins: [
+        react(),
+        windi(),
+        svgr(),
+        viteImagemin({
+            // 无损压缩配置，无损压缩下图片质量不会变差
+            optipng: {
+                optimizationLevel: 7
+            },
+            // 有损压缩配置，有损压缩下图片质量可能会变差
+            pngquant: {
+                quality: [0.8, 0.9],
+            },
+            // svg 优化
+            svgo: {
+                plugins: [
+                {
+                  name: 'removeViewBox'
+                },
+                {
+                  name: 'removeEmptyAttrs',
+                  active: false
+                }
+              ]
+            }
+          })
+    ],
     css: {
         modules: {
             // 一般我们可以通过 generateScopedName 属性来对生成的类名进行自定义
@@ -37,5 +65,6 @@ export default defineConfig({
         alias:{
             '@assets':path.join(__dirname,'src/assets')
         }
-    }
+    },
+    // base:isProduction?CDN_URL:'/',
 });
