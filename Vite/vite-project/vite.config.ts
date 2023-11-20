@@ -21,6 +21,9 @@ export default defineConfig({
             optipng: {
                 optimizationLevel: 7
             },
+            mozjpeg: {
+                quality: [0.8, 0.9],
+            },
             // 有损压缩配置，有损压缩下图片质量可能会变差
             pngquant: {
                 quality: [0.8, 0.9],
@@ -36,8 +39,8 @@ export default defineConfig({
                   active: false
                 }
               ]
-            }
-          })
+            },
+        })
     ],
     css: {
         modules: {
