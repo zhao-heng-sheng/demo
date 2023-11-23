@@ -6,6 +6,6 @@ export class Employee {
     id: number
     @Column({length:50})
     name: string
-    @ManyToOne(()=>Department)
+    @ManyToOne(()=>Department,{/* cascade:true */})
     department:Department
 }

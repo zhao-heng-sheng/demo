@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Employee } from './Employee';
 
 @Entity()
 export class Department {
@@ -6,4 +7,6 @@ export class Department {
     id: number
     @Column({length:50})
     name: string
+    @OneToMany(()=>Employee,employee=>employee.department,{cascade:true})
+    employees:Employee[];
 }
