@@ -14,8 +14,5 @@ AppDataSource.initialize().then(async () => {
     const t1 = new Tag();
     t1.name ="标签1";
     const t2 = new Tag();
-    const t3 = new Tag();
-    let user = new User();
-    let user2 = new U
 
 }).catch(error => console.log(error))
