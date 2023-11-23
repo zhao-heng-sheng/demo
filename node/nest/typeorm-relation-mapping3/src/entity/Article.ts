@@ -10,6 +10,6 @@ export class Article {
     @Column({type:'text',comment:'内容'})
     content:string
     @JoinTable()
-    @ManyToMany(()=>Tag)
+    @ManyToMany(()=>Tag,tag=>tag.articles)
     tags:Tag[]
 }
