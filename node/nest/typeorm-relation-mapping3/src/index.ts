@@ -43,6 +43,6 @@ AppDataSource.initialize().then(async () => {
             console.log(article)
         })
     })
-    
+
 
 }).catch(error => console.log(error))
