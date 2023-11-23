@@ -23,9 +23,15 @@ AppDataSource.initialize().then(async () => {
     // await entityMananger.save([t1,t2,t3,a1,a2]);
 
 
-    const article = await AppDataSource.manager.findOne(Article,{
+    const articles = await AppDataSource.manager.find(Article,{
         relations:['tags']
     })
-    console.log(article)
+    // console.log(articles)
+    articles.forEach(article => {
+        console.log(article.title)
+        article.tags.forEach(tag => {
+            console.log(tag)
+        })
+    })
 
 }).catch(error => console.log(error))
