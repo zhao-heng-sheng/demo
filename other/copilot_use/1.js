@@ -3,7 +3,12 @@ var randomDecimal = Math.random();
 
 // 生成一个1到10之间的随机整数
 var randomInteger = Math.floor(Math.random() * 10) + 1;
-
+//写注释
+/**
+ * 检查给定的URL是否为图片URL
+ * @param {string} url - 需要检查的URL
+ * @returns {boolean} 如果URL是图片（.jpg, .jpeg, .png, .gif）则返回true，否则返回false
+ */
 function isImageUrl(url) {
     var imageExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
     var extension = url.substring(url.lastIndexOf('.')).toLowerCase();
