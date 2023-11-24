@@ -33,6 +33,6 @@ export class User {
   @UpdateDateColumn({ comment: '更新时间' })
   update_time: Date;
   @ManyToMany(() => Role,role=>role.users)
-  @JoinTable({ name: 'user_roles' })
+  @JoinTable({name:'user_roles'})
   roles: Role[];
 }
