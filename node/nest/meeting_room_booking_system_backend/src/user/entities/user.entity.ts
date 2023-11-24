@@ -2,10 +2,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -34,7 +32,7 @@ export class User {
   create_time: Date;
   @UpdateDateColumn({ comment: '更新时间' })
   update_time: Date;
-  @ManyToMany(() => Role)
+  @ManyToMany(() => Role,role=>role.users)
   @JoinTable({ name: 'user_roles' })
   roles: Role[];
 }
