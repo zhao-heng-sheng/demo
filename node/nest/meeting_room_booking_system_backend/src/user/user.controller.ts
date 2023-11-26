@@ -6,9 +6,9 @@ import {RegisterUserDto} from './dto/register-user.dto'
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Post('register')
-  register(@Body() registerUser:RegisterUserDto){
+  async register(@Body() registerUser:RegisterUserDto){
     console.log(registerUser);
-    return 'success'
+    return await this.userService.register(registerUser);
   }
 
 }

@@ -1,17 +1,20 @@
 {
-  "name": "node_redis_test",
+  "name": "email_node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node index.js",
+    "receive": "node receive.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "redis": "^4.6.11"
+    "imap": "^0.8.19",
+    "mailparser": "^3.6.5",
+    "nodemailer": "^6.9.7"
   }
 }
