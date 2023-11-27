@@ -9,9 +9,20 @@ export class EmailService {
             port:587,
             secure:false,
             auth:{
-                user:'',
-                pass:''
+                user:'263667262@qq.com',
+                pass:'usmxwtpwinzabgeb'
             },
+        })
+    }
+    async sendMail({to,subject,html}){
+        await this.transporter.sendMail({
+            from:{
+                name:'会议室预定系统',
+                address:'263667262@qq.com'
+            },
+            to,
+            subject,
+            html
         })
     }
 }
