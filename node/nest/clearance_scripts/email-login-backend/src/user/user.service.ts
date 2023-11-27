@@ -13,6 +13,7 @@ export class UserService {
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
+
   async findUserByEmail(email: string) {
     return await this.entityManager.findOneBy(User,{
       email

@@ -23,7 +23,7 @@ export class UserController {
     if(code !== codeInRedis){
       throw new UnauthorizedException('验证码错误')
     }
-    const user = await this.userService.findOneByEmail(email)
+    const user = await this.userService.findUserByEmail(email)
     console.log(user)
     return 'success'
 
