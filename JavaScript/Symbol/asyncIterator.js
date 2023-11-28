@@ -24,12 +24,12 @@ let a ={
         }
     }
 }
-console.log(await a.next());
 async function asyncCount(){
     let emitter = new Emitter(5);
     for await(const x of emitter){
         console.log(x);
     }
+    console.log(a[Symbol.asyncIterator]().next());
     for await(const y of a){
         console.log(y);
     }
