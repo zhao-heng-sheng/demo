@@ -15,10 +15,24 @@ class Emitter{
         }
     }
 }
+let a ={
+    max:5,
+    index:0,
+    async *[Symbol.asyncIterator](){
+        while(this.index<this.max){
+            yield new Promise(resolve=>resolve(this.index++));
+        }
+    }
+}
 async function asyncCount(){
     let emitter = new Emitter(5);
     for await(const x of emitter){
         console.log(x);
     }
+    for await(const y of a){
+        console.log(y);
+    }
 }
+
+
 asyncCount();
