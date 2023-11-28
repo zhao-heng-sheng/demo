@@ -21,6 +21,7 @@ export class UserController {
   @Get('register-captcha')
   async captcha(@Query('address') address:string){
     const code = Math.random().toString().slice(2,8);
+    await  this.redisService.set(`captcha_${address}`,code,5*60)
     await this.emailService.sendMail({
       to:address,
       subject:'注册验证码',
