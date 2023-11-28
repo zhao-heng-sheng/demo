@@ -24,6 +24,7 @@ let a ={
         }
     }
 }
+console.log(await a.next());
 async function asyncCount(){
     let emitter = new Emitter(5);
     for await(const x of emitter){
@@ -33,6 +34,4 @@ async function asyncCount(){
         console.log(y);
     }
 }
-
-
 asyncCount();
