@@ -1,12 +1,13 @@
 function* gen() {
-    yield* "hello"
+    yield* [1, 2, 3]
 }
 let it = gen()
-for (let ietm of it) {
-    console.log(ietm)
-    // h
-    // e
-    // l
-    // l
-    // o
+console.log(it.next())
+
+function* generatorFnA() {
+    for (const x of [1, 2, 3]) {
+        yield x
+    }
 }
+let itA = generatorFnA()
+console.log(itA.next())
