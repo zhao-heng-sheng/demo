@@ -17,4 +17,4 @@ for(let key in p){
     console.log(key);
 }
 console.log(Object.keys(p));
-console.log(p);
+console.log(Object.getOwnPropertyNames(p));
