@@ -19,7 +19,7 @@ let symbol = Symbol('symbol');
 p.job = 'student';
 p[symbol] = 'symbol';
 for(let key in p){
-    console.log(key);
+    console.log(key);   //job age say
 }
-console.log(Object.keys(p));
-console.log(Object.getOwnPropertyNames(p));
+console.log(Object.keys(p));    //["job"]
+console.log(Object.getOwnPropertyNames(p));  //["x", "job"]
