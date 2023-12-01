@@ -27,7 +27,8 @@ console.log(Person.prototype.constructor === Person) // true
  * Object 原型的原型是 null
  */
 console.log(Person.prototype.__proto__ === Object.prototype) // true console.log(Person.prototype.__proto__.constructor === Object); // true console.log(Person.prototype.__proto__.__proto__ === null);     // true
-console.log(Person.prototype.__proto__) // {
+console.log(Person.prototype.__proto__)
+// {
 //   constructor: f Object(),
 //   toString: ...
 //   hasOwnProperty: ...
@@ -40,7 +41,8 @@ let person1 = new Person(),
  * 构造函数、原型对象和实例
  * 是 3 个完全不同的对象：
  */
-console.log(person1 !== Person) // true console.log(person1 !== Person.prototype); // true console.log(Person.prototype !== Person);  // true
+console.log(person1 !== Person) // true console.log(person1 !== Person.prototype);
+// true console.log(Person.prototype !== Person);  // true
 /**
  * 实例通过__proto__链接到原型对象，
  * 它实际上指向隐藏特性[[Prototype]]
