@@ -23,3 +23,5 @@ for(let key in p){
 }
 console.log(Object.keys(p));    //["job"]
 console.log(Object.getOwnPropertyNames(p));  //["x", "job"]
+console.log(Object.getOwnPropertySymbols(p));    //[Symbol(symbol)]
+console.log(Object.getPrototypeOf(p));  //{age:20,say:f}
