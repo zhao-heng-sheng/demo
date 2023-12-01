@@ -10,6 +10,11 @@ Object.defineProperty(Person.prototype,'name',{
     enumerable:false
 })
 let p = new Person();
+Object.defineProperty(p,'x',{
+    value:100,
+    enumerable:false
+
+})
 let symbol = Symbol('symbol');
 p.job = 'student';
 p[symbol] = 'symbol';
