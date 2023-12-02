@@ -1,5 +1,4 @@
 let Person = function(obj){
-    // ({name:this.name,age:this.age} = obj)
 }
 Person.prototype.name = 'zhangsan';
 Person.prototype.age = 20;
