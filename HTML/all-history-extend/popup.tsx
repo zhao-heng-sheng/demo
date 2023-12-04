@@ -1,7 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function IndexPopup() {
   const [data, setData] = useState("")
+  useEffect(()=>{
+    // chrome.webNavigation.onCommitted.addListener((val)=>{
+    //   console.log('xxx',val)
+    // })
+    console.log(window.location);
+    console.log("zxcvx")
+  })
 
   return (
     <div
@@ -9,8 +16,8 @@ function IndexPopup() {
         display: "flex",
         flexDirection: "column",
         padding: 16,
-        width: 300,
-}}>
+        width: 300
+      }}>
       <h2>
         Welcome to your
         <a href="https://www.plasmo.com" target="_blank">
