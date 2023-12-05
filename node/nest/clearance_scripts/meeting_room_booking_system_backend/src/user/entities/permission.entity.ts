@@ -1,7 +1,7 @@
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm'
 import { Role } from './role.entity'
 @Entity('permissions')
-export class Premission{
+export class Permission{
     @PrimaryGeneratedColumn({type:'int'})
     id:number
     @Column({length:20,comment:'权限代码'})
