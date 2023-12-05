@@ -4,7 +4,7 @@ import { log } from 'console';
 import {SwaggerModule,DocumentBuilder} from '@nestjs/swagger'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule,{cors:true});
   //swagger
   const config = new DocumentBuilder()
     .setTitle('zhaohs swagger')
