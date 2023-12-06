@@ -31,7 +31,12 @@ export class UserService {
 
   }
   async login(user:LoginDto){
-    
+    const foundUser = await this.userRespository.findOneBy({
+      username: user.username,
+    });
+    if(!foundUser) throw new HttpException('用户不存在', 200);
+    if(foundUser.password !== md5(user.password)) throw new HttpException('密码错误', 200);
+    return foundUser
   }
 }
 
