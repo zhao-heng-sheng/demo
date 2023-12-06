@@ -25,6 +25,9 @@ export class AppController {
     if(authorization){
       try{
         const token = authorization.split(' ')[1];
+        console.log(authorization);
+        console.log(token);
+        
         const data = this.jwtService.verify(token);
         const newToken = this.jwtService.sign({count:data.count+1})
         response.setHeader('token',newToken)
