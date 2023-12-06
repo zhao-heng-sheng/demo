@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject,Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Inject,
+  Res,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -11,27 +22,29 @@ import { Response } from 'express';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Inject(JwtService)
-  private jwtService:JwtService
+  private jwtService: JwtService;
   @Post('login')
-  async login(@Body() user:LoginDto,@Res({passthrough:true})res:Response){
+  async login(
+    @Body(ValidationPipe) user: LoginDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     console.log(user);
-    const foundUser = await this.userService.login(user)
-    if(foundUser){
+    const foundUser = await this.userService.login(user);
+    if (foundUser) {
       const token = await this.jwtService.signAsync({
-        user:{
-          id:foundUser.id,
-          username:foundUser.username
-        }
-      })
-      res.setHeader('token',token)
-      return 'login success'
-    } 
-    return 'login failed'
+        user: {
+          id: foundUser.id,
+          username: foundUser.username,
+        },
+      });
+      res.setHeader('token', token);
+      return 'login success';
+    }
+    return 'login failed';
   }
   @Post('register')
-  async register(@Body() user:RegisterDto){
+  async register(@Body(ValidationPipe) user: RegisterDto) {
     console.log(user);
-    return await this.userService.register(user)
+    return await this.userService.register(user);
   }
-
 }
