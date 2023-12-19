@@ -2,9 +2,15 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BrowsingHistoryModule } from './browsing_history/browsing_history.module';
-
+import {ConfigModule} from '@nestjs/config'
 @Module({
-  imports: [BrowsingHistoryModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal:true,
+      envFilePath:'src/.env'
+    }),
+    BrowsingHistoryModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
