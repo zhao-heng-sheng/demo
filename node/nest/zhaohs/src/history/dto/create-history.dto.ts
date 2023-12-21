@@ -1,7 +1,6 @@
-import {IsNotEmpty, IsNumber, IsString} from 'class-validator'
+import {IsNotEmpty, IsNumber, IsPort, IsString} from 'class-validator'
 export class CreateHistoryDto {
-  @IsString()
-  title:string;
+  title?:string;
   @IsNotEmpty({
     message:'url不能为空'
   })
@@ -12,12 +11,9 @@ export class CreateHistoryDto {
   })
   @IsString()
   domain:string;
-  @IsNumber()
-  port:number;
-  os:string;
-  browserType:string;
-  @IsNumber()
-  longitude:number;
-  @IsNumber()
-  latitude:number;
+  port?:number;
+  os?:string;
+  browserType?:string;
+  longitude?:number;
+  latitude?:number;
 }

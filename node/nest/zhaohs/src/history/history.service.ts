@@ -1,10 +1,32 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateHistoryDto } from './dto/create-history.dto';
+import {History} from './entities/history.entity'
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class HistoryService {
-  create(createHistoryDto: CreateHistoryDto) {
-    return 'This action adds a new history';
+  @InjectRepository(History)
+  private userRepository:Repository<History>
+
+  async create(data: CreateHistoryDto) {
+    const newHistory = new History();
+    ({
+      title: newHistory.title,
+      url: newHistory.url,
+      domain: newHistory.domain,
+      port:newHistory.port,
+      os:newHistory.os,
+      browserType:newHistory.browserType,
+      longitude:newHistory.longitude,
+      latitude:newHistory.latitude,
+    } = data);
+    try {
+      await this.userRepository.save(newHistory)
+      return '保存成功'
+    } catch (error) {
+      return error
+    }
   }
 
   findAll() {
