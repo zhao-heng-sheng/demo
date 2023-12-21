@@ -1,4 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({
   name: 'history',
@@ -7,8 +12,8 @@ export class History {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({
-    length: 300,
-    comment: '页面名',
+    length: 200,
+    comment: '页面title',
   })
   title: string;
   @Column({ comment: '页面地址' })
@@ -17,8 +22,8 @@ export class History {
   equipment: string;
   @Column({ length: 255, comment: '页面域名' })
   domain: string;
-  @Column({length:65535,comment:'端口号'})
-  port:number;
+  @Column({ comment: '端口号' })
+  port: number;
   @CreateDateColumn()
   createdAt: Date;
 }
