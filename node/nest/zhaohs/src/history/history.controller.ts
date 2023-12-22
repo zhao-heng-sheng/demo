@@ -1,7 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { HistoryService } from './history.service';
 import { CreateHistoryDto } from './dto/create-history.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('浏览器浏览记录模块')
 @Controller('history')
 export class HistoryController {
   constructor(private readonly historyService: HistoryService) {}
