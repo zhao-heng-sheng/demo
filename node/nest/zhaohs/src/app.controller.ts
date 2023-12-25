@@ -10,6 +10,7 @@ export class AppController {
   @Get()
   getHello(){
     return{
+      env:process.env,
       aaa:this.configService.get('aaa'),
       bbb:this.configService.get('bbb')
     }
