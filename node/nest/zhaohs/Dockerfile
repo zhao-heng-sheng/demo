@@ -25,5 +25,4 @@ RUN npm config set registry https://registry.npmmirror.com/
 RUN npm install --production
 
 EXPOSE 3000
-
-CMD ["yarn","start:prod"]
+CMD ["node", "/app/main.js"]
