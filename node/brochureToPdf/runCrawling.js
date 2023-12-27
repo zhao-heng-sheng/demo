@@ -39,7 +39,6 @@ module.exports = (browser, url) => {
                 // 章节内容获取完成
                 if (req.url().indexOf("api.juejin.cn/booklet_api/v1/section/get") + 1) {
                     setTimeout(async () => {
-                        // TODO:先建个死循环，直到listObj[section_id]有值
                         let { section_id } = JSON.parse(req.postData())
                         while (true) {
                             if (listObj[section_id]) {
