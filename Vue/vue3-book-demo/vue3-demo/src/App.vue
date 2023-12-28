@@ -6,9 +6,8 @@
 
 <script>
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  setup(props) {
+    
   }
 }
 </script>
