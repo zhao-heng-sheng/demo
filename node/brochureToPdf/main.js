@@ -11,12 +11,5 @@ const runCrawling = require("./runCrawling");
         let res = await runCrawling(browser,bookLink);
         console.log(res);
     }
-    // Promise.all(bookLinks.map((item) => runCrawling(browser, item)))
-    //     .then((res) => {
-    //         console.log(res);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
     browser.close();
 })();

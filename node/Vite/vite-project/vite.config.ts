@@ -69,5 +69,17 @@ export default defineConfig({
             '@assets':path.join(__dirname,'src/assets')
         }
     },
+    optimizeDeps:{
+        // 入口文件
+        entries:['./*.html'],
+        // 预加载的依赖
+        include:['react','react-dom','react-router-dom','axios','@ant-design/icons'],
+        // 排除的依赖
+        exclude:['vue'],
+        // 依赖的esbuild配置
+        esbuildOptions:{
+            
+        }
+    }
     // base:isProduction?CDN_URL:'/',
 });
