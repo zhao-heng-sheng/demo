@@ -27,7 +27,7 @@ import { History } from './history/entities/history.entity';
           poolSize: 10,
           connectorPackage: 'mysql2',
         };
-      },
+      }, 
       inject: [ConfigService],
     }),
     HistoryModule,
