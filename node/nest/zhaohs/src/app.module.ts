@@ -24,7 +24,7 @@ import { History } from './history/entities/history.entity';
           synchronize: true,
           logging: true,
           entities: [History],
-          poolSize: 10,
+          poolSize: 10, 
           connectorPackage: 'mysql2',
         };
       }, 
