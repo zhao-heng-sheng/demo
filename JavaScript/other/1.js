@@ -1,4 +1,4 @@
-function add(arr){
+function add(arr,fun){
   return arr.map(item=>item+1)
 }
 function mul(arr){
