@@ -26,6 +26,13 @@ function curry(fn){
 console.log(addThreeNum(1,2,3));
 console.log(addThreeNumCurry(1)(2)(3));
 let addThreeNumCurry2 = curry(addThreeNum)
-console.log(addThreeNumCurry2(1));
+console.log(addThreeNumCurry2(1)(2)(3));
 
 // 偏函数
+function wrapFunc(func,fixedValue){
+    function wrappedFunc(input){
+        const newFunc = func(input,fixedValue)
+        return newFunc;
+    }
+    return wrappedFunc;
+}
