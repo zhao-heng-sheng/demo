@@ -2,10 +2,12 @@ function curry(fn){
   let length = fn.length
   let args = []
   function fn(x){
+    console.log(x,args);
     if(args.length>=length){
       return fn(...args)
     }
     args.push(x)
+    return fn
   }
   return fn
 }
