@@ -10,7 +10,10 @@ import { History } from './history/entities/history.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'production' ? 'src/.env.production' : 'src/.env',
+      envFilePath:
+        process.env.NODE_ENV === 'production'
+          ? 'src/.env.production'
+          : 'src/.env',
     }),
     TypeOrmModule.forRootAsync({
       useFactory(configService: ConfigService) {
@@ -21,13 +24,13 @@ import { History } from './history/entities/history.entity';
           username: configService.get('mysql_server_username'),
           password: configService.get('mysql_server_password'),
           database: configService.get('mysql_server_database'),
-          synchronize: true,
+          synchronize: process.env.NODE_ENV === 'production' ? false : true,
           logging: true,
           entities: [History],
-          poolSize: 10, 
+          poolSize: 10,
           connectorPackage: 'mysql2',
         };
-      }, 
+      },
       inject: [ConfigService],
     }),
     HistoryModule,
@@ -35,4 +38,4 @@ import { History } from './history/entities/history.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {} 
+export class AppModule {}
