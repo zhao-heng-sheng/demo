@@ -1,8 +1,6 @@
 import axios from "axios"
-
 import { getBsInfo, getOS } from "./utils"
-
-;(async () => {
+(async () => {
   let { href: url, hostname: domain, port } = window.location
   let browserType = getBsInfo().bs_name
   let title = document.title
@@ -14,8 +12,11 @@ import { getBsInfo, getOS } from "./utils"
   }
   let addHistory = () => {
     let notRecordDomain = ["localhost", "127.0.0.1"]
-    if (notRecordDomain.includes(domain)) return
-    axios.post(`${process.env.REQ_DOMAIN}/history`, {
+    if (notRecordDomain.includes(domain)) return;
+    console.log(process.env.REQ_DOMAIN);
+    
+    // axios.post(`${process.env.REQ_DOMAIN}/history`, {
+    axios.post(`http://zhaohs.cn:3000/history`, {
       url,
       domain,
       port,
