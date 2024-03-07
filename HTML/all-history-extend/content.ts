@@ -16,7 +16,7 @@ import { getBsInfo, getOS } from "./utils"
     console.log(process.env.REQ_DOMAIN);
     
     // axios.post(`${process.env.REQ_DOMAIN}/history`, {
-    axios.post(`http://zhaohs.cn:3000/history`, {
+    axios.post(`https://zhaohs.cn:3000/history`, {
       url,
       domain,
       port,
