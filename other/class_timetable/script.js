@@ -16,9 +16,9 @@ let dateDispose = function (text) {
     if (arr.length == 2) return dayjs(`${dayjs().year()}/${arr[1]}`).format("DD/MM/YYYY");
 };
 let timeDispose = function (time, type) {
-    let x = dayjs()
+    let x = dayjs();
     let arr = time.split(":");
-    time=dayjs({hour:arr[0],minute:arr[1]})
+    time = dayjs({ hour: arr[0], minute: arr[1] });
     console.log(time);
     if (type == "面授") {
         return dayjs(time).subtract(2, "hour").format("HH:mm");
@@ -47,7 +47,7 @@ let pushDate = function (rateArr, min, max) {
                     endDate = dateDispose(rateArr[2][j]),
                     startTime = timeDispose(rateArr[i][10].split("-")[0], location),
                     endTime = rateArr[i][10]?.split("-")[1]?.split("(")[0];
-                data.push([subject, startDate, startTime, endDate, endTime, "FALSE", `${subject}-${location}-教室${rateArr[i][11]}`, location]);
+                data.push([subject, startDate, startTime, endDate, endTime, "FALSE", `${subject}-${location}`, location]);
             }
         }
     }
