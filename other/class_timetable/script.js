@@ -10,8 +10,8 @@ let dateDispose = function (text) {
     console.log(text);
     let arr = text.split("\n");
     // console.log(arr);
-    if (arr.length == 1) return `${dayjs().year()}/${arr[0]}`;
-    if (arr.length == 2) return `${dayjs().year()}/${arr[1]}`;
+    if (arr.length == 1) return dayjs(`${dayjs().year()}/${arr[0]}`).format("DD/MM/YYYY");
+    if (arr.length == 2) return dayjs(`${dayjs().year()}/${arr[1]}`).format("DD/MM/YYYY")
 };
 /**
  *
@@ -34,7 +34,7 @@ let pushDate = function (rateArr, min, max) {
                 let startDate = dateDispose(rateArr[2][j]),
                     endDate = dateDispose(rateArr[2][j]),
                     location = rateArr[i][j].indexOf("面授") + 1 ? "面授" : "线上";
-                data.push([subject, startDate, endDate, startTime, endTime, location]);
+                data.push([subject, startDate,startTime, endDate,  endTime, "FALSE",`${subject}-${location}`,location]);
             }
         }
     }
@@ -45,7 +45,7 @@ let hash = {};
 buildData.push(...pushDate(rateXlsx, 5, rateXlsx.length - 1));
 
 // 主题 开始日期 开始时间 结束日期 结束时间 位置 说明
-buildData.unshift(["Subject", "StartDate", "EndDate", "StartTime", "EndTime", "Location", "Description"]);
+buildData.unshift(["Subject", "Start Date","Start Time", "End Date",  "End Time","All Day" , "Description","Location"]);
 
 var buffer = xlsx.build([{ name: "table1", data: buildData }]);
 var filePath = __dirname + "/newXlsx.xlsx";
