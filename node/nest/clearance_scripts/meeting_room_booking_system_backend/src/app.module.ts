@@ -27,7 +27,7 @@ import { JwtModule } from '@nestjs/jwt';
           poolSize: 10,
           connectorPackage: 'mysql2',
           extra: {
-            authPlugin: 'sha256_password',
+            // authPlugin: 'sha256_password',
           },
         };
       },
