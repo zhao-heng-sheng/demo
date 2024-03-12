@@ -18,5 +18,10 @@ const Box = (x) => {
         },
     };
 };
-const newBox = Box(10).map(add4).map(multiply3).map(divide2).valueOf()
+const Identity = (x) => ({
+    map: (f) => Identity(f(x)),
+    valueOf: () => x,
+    inspect: () => `Identity {${x}}`,
+});
+const newBox = Box(10).map(add4).map(multiply3).map(divide2).valueOf();
 console.log(newBox);
