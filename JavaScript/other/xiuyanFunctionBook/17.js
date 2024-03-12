@@ -18,5 +18,5 @@ const Box = (x) => {
         },
     };
 };
-const newBox = Box(10).map(add4)
+const newBox = Box(10).map(add4).map(multiply3).map(divide2).valueOf()
 console.log(newBox);
