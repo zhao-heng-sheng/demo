@@ -4,10 +4,10 @@ const Maybe = (val) => {
     return {
         map: (fn) => (isEmpty(val) ? Maybe(null) : Maybe(fn(val))),
         valueOf: () => val,
+        flatMap: (fn) => (isEmpty(val) ? Maybe(null) : fn(val)),
         inspect: () => `Maybe(${val})`,
     };
 };
-
 const getUser = (id) => {
     if (isExisted(id)) {
         return { id: id, nickName: String(id).slice(0, 3) };
@@ -15,7 +15,6 @@ const getUser = (id) => {
         throw new Error("User not found");
     }
 };
-
 const getUserSafely = (id) => {
     try {
         const userInfo = getUser(id);
@@ -24,6 +23,5 @@ const getUserSafely = (id) => {
         return Maybe(null);
     }
 };
-
 const res = getUserSafely(1110021);
 console.log(res.valueOf());
