@@ -55,4 +55,7 @@ export class UserController {
     const vo = this.userService.login(loginUser, true);
     return vo;
   }
+
+  @Get('info')
+  async info() {}
 }
