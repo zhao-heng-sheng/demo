@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 class="hello" data-name="zhaohs"></h1>
+  <a class="hover-tips btn-1" href="https://www.baidu.com" data-msg="hello world"></a>
+  <a></a>
+</body>
+<style>
+  h1::before{
+    content:attr(class)
+  }
+  h1::after{
+    content:attr(data-name)
+  }
+</style>
+</html>
