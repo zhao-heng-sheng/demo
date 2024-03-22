@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字溢出</title>
+</head>
+<body>
+  <main>
+    <p class="p1">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates iste dolor quo fugit perferendis deleniti rem odit quos quaerat numquam facilis error atque, inventore voluptatibus, quibusdam distinctio. Laborum, repudiandae illo.
+    </p>
+    <p class="p2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat enim dolorum veniam perferendis tenetur praesentium a, vitae unde adipisci qui quo mollitia delectus? Atque animi quidem alias asperiores ex. Sequi.
+    </p>
+
+  </main>
+</body>
+<style>
+  main{
+    width: 300px;
+    height: 300px;
+  }
+  .p1{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>
+</html>
