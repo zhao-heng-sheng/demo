@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>attr函数</title>
+</head>
+<body>
+  <button class="btn1" data-msg="hello attr">xxx</button>
+  <button data-href="zhaohs.cn"></button>
+  <style>
+    .btn1{
+      position: relative;
+      padding: 10px 20px;
+      border: 1px solid #000;
+      background: #f40;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100px;
+    }
+    .btn1:hover::before{
+      content: attr(data-msg);
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding-left:100px;
+      color: black;
+    }
+    /* :empty  匹配没有子元素的元素 */
+    button:empty::before{
+      content: attr(data-href);
+    }
+  </style>
+</body>
+</html>
