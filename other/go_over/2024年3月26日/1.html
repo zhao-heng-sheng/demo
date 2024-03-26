@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字溢出</title>
+</head>
+<body>
+  <div class="box1">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, recusandae praesentium sunt officiis fugit voluptas quo mollitia a deleniti autem libero minima consectetur provident distinctio aliquid expedita repellat necessitatibus at.lorem  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error eveniet voluptatibus eius a commodi id deserunt numquam laudantium dolorum rem sed ea voluptas facere delectus quam aperiam nobis, magni laboriosam?
+    Quibusdam id quas explicabo. Blanditiis magnam tempore, recusandae mollitia in, consectetur repellendus, sapiente alias ducimus consequatur itaque nemo esse ea officiis! Doloribus facere magni sequi quibusdam inventore necessitatibus eum neque.
+  </div>
+  <style>
+    .box1{
+      width: 300px;
+      height: 300px;
+      overflow:hidden;
+      /* 字体超出隐藏 */
+      text-overflow: ellipsis;
+      /* 文字不换行 */
+      white-space: nowrap;
+    }
+  </style>
+  <div class="box2">
+    阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨阿帆看客户金卡价考虑到飞机卡拉季山卡拉代发金卡拉萨
+  </div>
+  <style>
+    /* 内核解决方案 */
+    .box2{
+      width: 300px;
+      overflow:hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    /* 相对定位加省略号 */
+    .box2{
+      width: 400px;
+      overflow:hidden;
+      position: relative;
+      line-height: 1em;
+      height: 3em;
+    }
+    .box2::after{
+      content: "...";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding-left: 20px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%);
+    }
+  </style>
+</body>
+</html>
