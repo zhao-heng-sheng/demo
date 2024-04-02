@@ -8,6 +8,7 @@
     <body></body>
 </html>
 <script>
+    let bucket = new Set();
     let obj = {
         text: "123",
     };
@@ -16,18 +17,17 @@
     };
     let data = new Proxy(obj, {
         get(target, key, receiver) {
+            bucket.add(effect);
             return Reflect.get(target, key, receiver);
         },
         set(target, key, value, receiver) {
-            console.log(target, key, value, receiver);
             let result = Reflect.set(target, key, value, receiver);
-            effect();
+            bucket.forEach(fn=>fn())
             return result;
         },
     });
-    setInterval(()=>{
-      data.text = Math.random();
-    },8000)
-    // data.text = "35634";
-    console.log(data);
+    setInterval(() => {
+        data.text = Math.random();
+    }, 8000);
+    effect();
 </script>
