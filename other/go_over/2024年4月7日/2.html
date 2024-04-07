@@ -13,10 +13,23 @@
     // 注册副作用函数
     function effect(fn) {
         console.log(fn);
-        // 调用effect时，将副作用函数fn赋值给activeEffect
-        activeEffect = fn;
+        const effectFn = ()=>{
+          // 调用cleanup函数完成清除工作
+          cleanup(effectFn)
+          activeEffect = effectFn;
+          fn();
+        }
+        // 用来存储所有与该副作用函数相关联的依赖集合
+        effectFn.deps = [];
         // 执行
-        fn();
+        effectFn();
+    }
+    const cleanup = (effectFn)=>{
+      for(let i=0;i<effectFn.deps.length;i++){
+        const deps = effectFn.deps[i]
+        deps.delete(effectFn)
+      }
+      effectFn.deps.length = 0
     }
     // 存储副作用函数
     const bucket = new WeakMap();
@@ -43,6 +56,7 @@
         let deps = depsMap.get(key);
         if (!deps) depsMap.set(key, (deps = new Set()));
         deps.add(activeEffect);
+        activeEffect.deps.push(deps);
     };
     // set拦截函数内调用trigger函数触发副作用函数
     const trigger = (target, key) => {
