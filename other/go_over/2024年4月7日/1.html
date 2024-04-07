@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+</html>
+<script>
+    const bucket = new Set();
+
+    const data = { text: "htllo world" };
+
+    const obj = new Proxy(data, {
+        get(target, p, receiver) {
+            bucket.add(effect);
+            return Reflect.get(target, p, receiver);
+        },
+        set(target, p, newValue, receiver) {
+            let res = Reflect.set(target, p, newValue, receiver);
+            bucket.forEach((effect) => effect());
+            return res;
+        },
+    });
+    function effect() {
+        document.body.innerHTML = obj.text;
+    }
+    effect();
+    setInterval(()=>{
+        obj.text = Math.random()
+    },3000)
+</script>

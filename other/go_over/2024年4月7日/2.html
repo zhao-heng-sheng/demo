@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body></body>
+</html>
+<script>
+    // 存储被注册的副作用函数
+    let activeEffect;
+    // 注册副作用函数
+    function effect(fn) {
+        console.log(fn);
+        // 调用effect时，将副作用函数fn赋值给activeEffect
+        activeEffect = fn;
+        // 执行
+        fn();
+    }
+    // 存储副作用函数
+    const bucket = new WeakMap();
+    const data = { text: "htllo world" };
+
+    const obj = new Proxy(data, {
+        get(target, key, receiver) {
+            console.log("get", target, key);
+            trank(target, key);
+            return Reflect.get(target, key, receiver);
+        },
+        set(target, key, newValue, receiver) {
+            console.log("set", key, newValue);
+            let res = Reflect.set(target, key, newValue, receiver);
+            trigger(target, key);
+            return res;
+        },
+    });
+    // get拦截函数内调用trank函数追踪变化
+    const trank = (target, key) => {
+        if (!activeEffect) return;
+        let depsMap = bucket.get(target);
+        if (!depsMap) bucket.set(target, (depsMap = new Map()));
+        let deps = depsMap.get(key);
+        if (!deps) depsMap.set(key, (deps = new Set()));
+        deps.add(activeEffect);
+    };
+    // set拦截函数内调用trigger函数触发副作用函数
+    const trigger = (target, key) => {
+        const depsMap = bucket.get(target);
+        if (!depsMap) return res;
+        const effects = depsMap.get(key);
+        effects && effects.forEach((fn) => fn());
+    };
+
+    effect(() => {
+        document.body.innerHTML = obj.text;
+    });
+    // setInterval(() => {
+    //     obj.text = Math.random();
+    // }, 3000);
+</script>
