@@ -12,10 +12,14 @@ async function queryData() {
 function App() {
     const [num, setNum] = useState(0);
     useEffect(() => {
-        queryData().then((data) => {
-            setNum(data);
-        });
+        (async () => {
+            let res = await queryData();
+            setNum(res);
+        })();
+        // queryData().then((data) => {
+        //     setNum(data);
+        // });
     }, []);
-    return <div onClick={() => setNum((num) => num + 1)}>num</div>;
+    return <div onClick={() => setNum((num) => num + 1)}>{num}</div>;
 }
 export default App;
