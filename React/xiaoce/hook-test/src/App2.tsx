@@ -1,3 +1,4 @@
+import { log } from "console";
 import { useEffect, useState } from "react";
 
 async function queryData() {
@@ -12,14 +13,16 @@ async function queryData() {
 function App() {
     const [num, setNum] = useState(0);
     useEffect(() => {
-        (async () => {
-            let res = await queryData();
-            setNum(res);
-        })();
-        // queryData().then((data) => {
-        //     setNum(data);
-        // });
-    }, []);
+        console.log('123123');
+        
+        // (async () => {
+        //     let res = await queryData();
+        //     setNum(res);
+        // })();
+        return ()=>{
+            console.log("xxx");
+        }
+    },[num]);
     return <div onClick={() => setNum((num) => num + 1)}>{num}</div>;
 }
 export default App;
