@@ -1,0 +1,7 @@
+{
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "node-json-db": "^2.3.0"
+  }
+}
