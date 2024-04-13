@@ -1,5 +1,4 @@
-import axios from "./axios.js";
-let disciplines = [
+export let disciplines = [
   {
     name:'大学英语B(1)',
     id:'40288a838d60137f018d7c5d41f70986'
