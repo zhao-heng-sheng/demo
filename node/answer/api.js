@@ -49,14 +49,13 @@ export let saveOrSubmitTopicData = (params) => {
 }
 
 //查询试题
-export let getQuestion = async (id) => {
-    let addr = `/questions/${id}`;
+export let getQuestion = async (key) => {
+    let addr = `/questions/${key}`;
     if (await db.exists(addr)) return db.getData(addr);
     return null;
 };
 
 // 保存试题
 export let saveQuestion = (params) => {
-    console.log(params,'xxx');
-    return db.push(`/questions/${params.id}`, params);
+    return db.push(`/questions/${params.questionTitle||params.id}`, params);
 };

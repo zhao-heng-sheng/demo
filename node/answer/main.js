@@ -29,7 +29,7 @@ let getTopicData = async (courseId, topicId) => {
     if (topic.state == "02") {
         let topicList = topicListFlat(topic.topicItems);
         for (let item of topicList) {
-            let question = await getQuestion(item.id);
+            let question = await getQuestion(item.questionTitle||item.id);
             if (!question) {
                 saveQuestion({ ...item, courseId, topicId });
             }

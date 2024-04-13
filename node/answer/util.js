@@ -15,13 +15,13 @@ export let topicListFlat = (topicList) => {
     let list = [];
     topicList.forEach((item) => {
         if (item.childList) {
-            topicListFlat(item.childList);
+            list.push(...topicListFlat(item.childList))
         }else{
             list.push(item);
         }
     });
     return list;
-};
+  };
 
 
 // 构造用于提交的试题答案
@@ -30,7 +30,7 @@ export let buildAnswers = async (topicData) => {
     // 未收入试题数量
     let count = 0;
     for (let item of topicData) {
-        let question = await getQuestion(item.id);
+        let question = await getQuestion(item.questionTitle||item.id);
         let answer = {
             id: item.id,
             topicType: item.courseTopicTypeCode || item.questionTypeCode,
