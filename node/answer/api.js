@@ -22,14 +22,33 @@ export let loadTopicData = (params) => {
     return axios.post("https://www.learnin.com.cn/app/user/student/course/space/topic/appStudentCourseTopic/loadTopicData", params);
 };
 
+/**
+ * 提交答案
+ * @params {Object} params
+ * @params {String} params.courseId 课程id
+ * @params {String} params.topicId 作业id
+ * @params {Array} params.allChoiceTopics 试题答案
+ * @params {String} params.allChoiceTopics.id
+ * @params {String} params.allChoiceTopics.topicType
+ * @params {String} params.allChoiceTopics.answer
+ * @params {String} params.allChoiceTopics.attachments
+ * 
+ * @params {String} params.studentCardTopicId ?
+ * @params {String} params.studentStoreTopicId ?
+ */
+export let saveOrSubmitTopicData = (params) => {
+    return axios.post("https://www.learnin.com.cn/app/user/student/course/space/topic/appStudentCourseTopic/saveOrSubmitTopicData", params);
+}
+
 //查询试题
 export let getQuestion = async (id) => {
     let addr = `/questions/${id}`;
-    if (db.exists(addr)) return db.getData(addr);
+    if (await db.exists(addr)) return db.getData(addr);
     return null;
 };
 
 // 保存试题
 export let saveQuestion = (params) => {
+    console.log(params,'xxx');
     return db.push(`/questions/${params.id}`, params);
 };
