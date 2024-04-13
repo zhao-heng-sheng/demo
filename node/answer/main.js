@@ -1,23 +1,8 @@
-import axios from "./axios.js";
-let disciplines = [
-  {
-    name:'大学英语B(1)',
-    id:'40288a838d60137f018d7c5d41f70986'
-  },
-  {
-    name:'概率论*',
-    id:'40288ab78dfccddb018e08e499e061b0'
-  },
-  {
-    name:'中国近现代史纲要*',
-    id:'40288ab68dfccda3018e0c8277804a23'
-  },
-  {
-    name:'高级语言程序设计A',
-    id:'40288a748d412a63018d4446413a0fa0'
-  },
-  {
-    name:'入学教育*',
-    id:'40288afa8c7d7f50018c8b15756b7636'
-  },
-]
+
+import {disciplines} from './data.js'
+import {loadTopicListData} from './api.js'
+
+(async()=>{
+  let res = await loadTopicListData({courseId:disciplines[0].id,pageIndex:1})
+  console.log(res)
+})()
