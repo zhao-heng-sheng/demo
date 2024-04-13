@@ -1,7 +1,7 @@
 import axios from "./axios.js";
 import path from "path";
 import { JsonDB, Config } from "node-json-db";
-const __dirname = path.dirname(import.meta.url);
+import {executeWithRandomDelay} from './util.js'
 let db = new JsonDB(new Config("bank", true, true, "/"));
 /**
  * 作业列表

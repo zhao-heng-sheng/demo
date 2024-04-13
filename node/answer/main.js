@@ -1,5 +1,5 @@
 import { disciplines } from "./data.js";
-import { topicListFlat, buildAnswers } from "./util.js";
+import { topicListFlat, buildAnswers,executeWithRandomDelay } from "./util.js";
 import { loadTopicListData, loadTopicData, loadRedoTopicData, saveOrSubmitTopicData, saveQuestion, getQuestion } from "./api.js";
 
 let getTopicList = async (courseId) => {
@@ -11,6 +11,7 @@ let getTopicList = async (courseId) => {
     topicList.push(...firstRes.topics);
     totalCount = firstRes.totalCount;
     countPage = Math.ceil(totalCount / limit);
+    if(totalCount<=0) return [];
     let res = await Promise.all([...Array(countPage - 1).keys()].map((i) => loadTopicListData({ courseId, pageIndex: i + 2 })));
     res.forEach((item) => {
         topicList.push(...item.topics);
@@ -55,8 +56,16 @@ let submitAnswer = async (topicData, courseId, topicId, studentStoreTopicId, stu
     if (studentStoreTopicId) req.studentStoreTopicId = studentStoreTopicId;
     if (studentCardTopicId) req.studentCardTopicId = studentCardTopicId;
     console.log(req, "req");
-    let res = await saveOrSubmitTopicData(req);
-    console.log(res);
+    let res = await executeWithRandomDelay(saveOrSubmitTopicData,req)
+    // let res = await saveOrSubmitTopicData(req);
+    // console.log(res);
+    if(res.responseCode!='SUCCESS'){
+      // if(res.message=='非最新作业内容，提交失败') {
+      //   againSubmitAnswer(topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId)
+      // }else {
+        throw new Error(res.message)
+      // }
+    }
     //未录入题数大于1时，重新提交
     if (count > 1) {
         againSubmitAnswer(topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId);
@@ -66,20 +75,22 @@ let againSubmitAnswer = async (topicData, courseId, topicId, studentStoreTopicId
     console.log("重做了");
     ({ topicData, studentStoreTopicId, studentCardTopicId } = await getTopicData(courseId, topicId));
     let res = await loadRedoTopicData({ courseId, topicId });
-    if (res.topic.studentCardTopicId) studentCardTopicId = res.topic.studentCardTopicId;
-    if (res.topic.studentStoreTopicId) studentCardTopicId = res.topic.studentStoreTopicId;
+    studentStoreTopicId = res.topic.studentStoreTopicId;
+    studentCardTopicId = res.topic.studentCardTopicId;
     if (res.topic.topicItems) topicData = res.topic.topicItems;
-    submitAnswer(topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId);
+    await submitAnswer(topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId);
 };
 (async () => {
-    let topicList = await getTopicList(disciplines[0].id);
-    {
-        let { topicData, submitType, studentStoreTopicId, studentCardTopicId } = await getTopicData(disciplines[0].id, topicList[3].id);
-        if (submitType == "1") {
-            submitAnswer(topicData, disciplines[0].id, topicList[0].id, studentStoreTopicId, studentCardTopicId);
-        }
-        if (submitType == "2") {
-            againSubmitAnswer(topicData, disciplines[0].id, topicList[0].id, studentStoreTopicId, studentCardTopicId);
+    for (let discipline of disciplines) {
+        let topicList = await getTopicList(discipline.id);
+        for (let topic of topicList) {
+            let { topicData, submitType, studentStoreTopicId, studentCardTopicId } = await getTopicData(discipline.id, topic.id);
+            if (submitType == "1") {
+                await submitAnswer(topicData, discipline.id, topic.id, studentStoreTopicId, studentCardTopicId);
+            }
+            if (submitType == "2") {
+                await againSubmitAnswer(topicData, discipline.id, topic.id, studentStoreTopicId, studentCardTopicId);
+            }
         }
     }
 })();

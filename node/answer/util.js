@@ -1,6 +1,6 @@
 import { getQuestion } from "./api.js";
 // 随机延迟执行函数
-export const executeWithRandomDelay = (callback, ...args) => {
+export const executeWithRandomDelay = (callback,...args) => {
     return new Promise((resolve, reject) => {
         const delayTime = Math.random() * 10 + 1;
 
@@ -16,8 +16,9 @@ export let topicListFlat = (topicList) => {
     topicList.forEach((item) => {
         if (item.childList) {
             topicListFlat(item.childList);
+        }else{
+            list.push(item);
         }
-        list.push(item);
     });
     return list;
 };
@@ -32,7 +33,7 @@ export let buildAnswers = async (topicData) => {
         let question = await getQuestion(item.id);
         let answer = {
             id: item.id,
-            topicType: item.courseTopicTypeCode,
+            topicType: item.courseTopicTypeCode || item.questionTypeCode,
             answer: "",
             attachments: "",
         };
@@ -55,7 +56,7 @@ export let buildAnswers = async (topicData) => {
         }
         if (item.childList) {
             answer = { id: item.id };
-            answer.childList = buildAnswers(item.childList);
+            answer.childList = (await buildAnswers(item.childList)).answers;
         }
         answers.push(answer);
     }
