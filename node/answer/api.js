@@ -22,14 +22,14 @@ export let loadTopicData = (params) => {
     return axios.post("https://www.learnin.com.cn/app/user/student/course/space/topic/appStudentCourseTopic/loadTopicData", params);
 };
 
-//查询db答案
-export let getAnswer = async (id) => {
-    let res = await db.getData(`/answer`);
-    return res.find((item) => item.id === id);
+//查询试题
+export let getQuestion = async (id) => {
+    let addr = `/questions/${id}`;
+    if (db.exists(addr)) return db.getData(addr);
+    return null;
 };
 
-// 保存答案到db
-export let saveAnswer = (params) => {
-    console.log("saveAnswer", params);
-    return db.push(`/answer[]`, params);
+// 保存试题
+export let saveQuestion = (params) => {
+    return db.push(`/questions/${params.id}`, params);
 };
