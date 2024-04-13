@@ -21,6 +21,15 @@ export let loadTopicListData = (params) => {
 export let loadTopicData = (params) => {
     return axios.post("https://www.learnin.com.cn/app/user/student/course/space/topic/appStudentCourseTopic/loadTopicData", params);
 };
+/**
+ * 重新答题
+  @params {Object} params
+  @params {String} params.courseId 课程id
+  @params {String} params.topicId 作业id
+*/
+export let loadRedoTopicData = (params) => {
+    return axios.post("https://www.learnin.com.cn/app/user/student/course/space/topic/appStudentCourseTopic/loadRedoTopicData", params);
+};
 
 /**
  * 提交答案
@@ -32,7 +41,6 @@ export let loadTopicData = (params) => {
  * @params {String} params.allChoiceTopics.topicType
  * @params {String} params.allChoiceTopics.answer
  * @params {String} params.allChoiceTopics.attachments
- * 
  * @params {String} params.studentCardTopicId ?
  * @params {String} params.studentStoreTopicId ?
  */

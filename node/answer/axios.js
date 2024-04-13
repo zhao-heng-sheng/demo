@@ -11,7 +11,7 @@ axios.defaults.headers = {
 };
 axios.interceptors.response.use(
     (response) => response.data,
-    (error) => Promise.reject(error.data)
+    (error) => Promise.reject(error)
 );
 
 export default axios;

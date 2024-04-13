@@ -1,6 +1,6 @@
 import { disciplines } from "./data.js";
-import { topicListFlat } from "./util.js";
-import { loadTopicListData, loadTopicData, saveOrSubmitTopicData, saveQuestion, getQuestion } from "./api.js";
+import { topicListFlat, buildAnswers } from "./util.js";
+import { loadTopicListData, loadTopicData, loadRedoTopicData, saveOrSubmitTopicData, saveQuestion, getQuestion } from "./api.js";
 
 let getTopicList = async (courseId) => {
     let limit = 10;
@@ -24,14 +24,13 @@ let getTopicList = async (courseId) => {
 let getTopicData = async (courseId, topicId) => {
     // console.log(courseId, topicId);
     let { topic } = await loadTopicData({ courseId, topicId });
-    console.log(topic, "topic");
     // 保存试题
     if (topic.state == "02") {
         let topicList = topicListFlat(topic.topicItems);
         for (let item of topicList) {
             let question = await getQuestion(item.id);
             if (!question) {
-                saveQuestion({...item,courseId,topicId});
+                saveQuestion({ ...item, courseId, topicId });
             }
         }
     }
@@ -45,26 +44,42 @@ let getTopicData = async (courseId, topicId) => {
     };
 };
 
+let submitAnswer = async (topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId) => {
+    let { answers, count } = await buildAnswers(topicData);
+    let req = {
+        courseId,
+        topicId,
+        submitTopic: true,
+        allChoiceTopics: JSON.stringify(answers),
+    };
+    if (studentStoreTopicId) req.studentStoreTopicId = studentStoreTopicId;
+    if (studentCardTopicId) req.studentCardTopicId = studentCardTopicId;
+    console.log(req, "req");
+    let res = await saveOrSubmitTopicData(req);
+    console.log(res);
+    //未录入题数大于1时，重新提交
+    if (count > 1) {
+        againSubmitAnswer(topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId);
+    }
+};
+let againSubmitAnswer = async (topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId) => {
+    console.log("重做了");
+    ({ topicData, studentStoreTopicId, studentCardTopicId } = await getTopicData(courseId, topicId));
+    let res = await loadRedoTopicData({ courseId, topicId });
+    if (res.topic.studentCardTopicId) studentCardTopicId = res.topic.studentCardTopicId;
+    if (res.topic.studentStoreTopicId) studentCardTopicId = res.topic.studentStoreTopicId;
+    if (res.topic.topicItems) topicData = res.topic.topicItems;
+    submitAnswer(topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId);
+};
 (async () => {
     let topicList = await getTopicList(disciplines[0].id);
     {
         let { topicData, submitType, studentStoreTopicId, studentCardTopicId } = await getTopicData(disciplines[0].id, topicList[3].id);
-        console.log(topicData, "topicData");
-
-        // if (submitType == "1") {
-        //     submitAnswer(topicData, disciplines[0].id, topicList[0].id, studentStoreTopicId, studentCardTopicId);
-        // }
+        if (submitType == "1") {
+            submitAnswer(topicData, disciplines[0].id, topicList[0].id, studentStoreTopicId, studentCardTopicId);
+        }
+        if (submitType == "2") {
+            againSubmitAnswer(topicData, disciplines[0].id, topicList[0].id, studentStoreTopicId, studentCardTopicId);
+        }
     }
 })();
-let submitAnswer = async (topicData, courseId, topicId, studentStoreTopicId, studentCardTopicId) => {
-    let answers = [];
-    
-    let res = await saveOrSubmitTopicData({
-        courseId,
-        topicId,
-        submitTopic: true,
-        studentStoreTopicId,
-        studentCardTopicId,
-        allChoiceTopics: answers,
-    });
-};
