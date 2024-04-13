@@ -11,6 +11,9 @@ dependencies:
   dotenv:
     specifier: ^16.4.5
     version: 16.4.5
+  node-json-db:
+    specifier: ^2.3.0
+    version: 2.3.0
   puppeteer:
     specifier: ^22.6.4
     version: 22.6.4
@@ -562,6 +565,12 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
+  /node-json-db@2.3.0:
+    resolution: {integrity: sha512-B8T+w4q6zXZ20YcfQINLSjMGgImRKzkvR0ShYYoNRdLxtMhVvbzaMBzNdEaRcCjilW/lKS+g9CwVXNoK5uTncw==, tarball: https://registry.npmmirror.com/node-json-db/-/node-json-db-2.3.0.tgz}
+    dependencies:
+      rwlock: 5.0.0
+    dev: false
+
   /once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==, tarball: https://registry.npmmirror.com/once/-/once-1.4.0.tgz}
     dependencies:
@@ -694,6 +703,10 @@ packages:
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==, tarball: https://registry.npmmirror.com/resolve-from/-/resolve-from-4.0.0.tgz}
     engines: {node: '>=4'}
+    dev: false
+
+  /rwlock@5.0.0:
+    resolution: {integrity: sha512-XgzRqLMfCcm9QfZuPav9cV3Xin5TRcIlp4X/SH3CvB+x5D2AakdlEepfJKDd8ByncvfpcxNWdRZVUl38PS6ZJg==, tarball: https://registry.npmmirror.com/rwlock/-/rwlock-5.0.0.tgz}
     dev: false
 
   /semver@7.6.0:
