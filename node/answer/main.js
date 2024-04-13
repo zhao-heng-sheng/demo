@@ -84,6 +84,7 @@ let againSubmitAnswer = async (topicData, courseId, topicId, studentStoreTopicId
     for (let discipline of disciplines) {
         let topicList = await getTopicList(discipline.id);
         for (let topic of topicList) {
+            if(topic.topicScore&&topic.topicScore>80) continue;
             let { topicData, submitType, studentStoreTopicId, studentCardTopicId } = await getTopicData(discipline.id, topic.id);
             if (submitType == "1") {
                 await submitAnswer(topicData, discipline.id, topic.id, studentStoreTopicId, studentCardTopicId);
