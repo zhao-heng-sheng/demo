@@ -14,16 +14,22 @@ let getTopicList = async (courseId) => {
     res.forEach((item) => {
         topicList.push(...item.topics);
     });
-    return topicList;
+    // 筛选  
+    // topicMoldCode:   Normal平时  End期末
+    // state: 11待提交 02已批阅
+    let states = ["11", "02"];
+    return topicList.filter((item) => item.topicMoldCode === "Normal" && states.includes(item.state));
 };
 let getTopicData = async (courseId, topicId) => {
+    console.log(courseId, topicId);
     let res = await loadTopicData({ courseId, topicId });
+    console.log(res);
     return res;
 };
 
 (async () => {
     let topicList = await getTopicList(disciplines[0].id);
-    // console.log(topicList, 'topicList');
-    let topicData = await loadTopicData({ courseId: disciplines[0].id, topicId: topicList[0].id });
-    console.log(topicData, "topicData");
+
+    let topicData = await getTopicData(disciplines[0].id, topicList[0].id);
+    // console.log(topicData, "topicData");
 })();
