@@ -1,3 +1,4 @@
+// 
 let deepCopy = (obj) => {
     let newObj = Array.isArray(obj) ? [] : {};
     for (let key in obj) {

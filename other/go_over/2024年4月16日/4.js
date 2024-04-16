@@ -1,7 +1,12 @@
-function cloneLoop(x) {
-    const root = {};
+// 保持引用关系
+function cloneForce(x) {
+    // =============
+    const uniqueList = []; // 用来去重
+    // =============
 
-    // 栈
+    let root = {};
+
+    // 循环数组
     const loopList = [
         {
             parent: root,
@@ -23,6 +28,22 @@ function cloneLoop(x) {
             res = parent[key] = {};
         }
 
+        // =============
+        // 数据已经存在
+        let uniqueData = find(uniqueList, data);
+        if (uniqueData) {
+            parent[key] = uniqueData.target;
+            break; // 中断本次循环
+        }
+
+        // 数据不存在
+        // 保存源数据，在拷贝数据中对应的引用
+        uniqueList.push({
+            source: data,
+            target: res,
+        });
+        // =============
+
         for (let k in data) {
             if (data.hasOwnProperty(k)) {
                 if (typeof data[k] === "object") {
@@ -40,4 +61,14 @@ function cloneLoop(x) {
     }
 
     return root;
+}
+
+function find(arr, item) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].source === item) {
+            return arr[i];
+        }
+    }
+
+    return null;
 }
