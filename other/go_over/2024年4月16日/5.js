@@ -6,13 +6,16 @@ let deepCopy = (obj) => {
 		key: undefined,
 		data: obj,
 	}, ];
-	while (loopList.length) {
-		console.log(loopList);
+	let count = 0;
+	while (loopList.length&&count<10) {
+		console.log(loopList,'1123');
+		count++;
 		let node = loopList.pop()
 		let key = null
 		let data = null
 		let parent = node
 		if (Object.prototype.toString.call(node) === '[object Object]') {
+			console.log(node);
 			for (let i in node) {
 				loopList.push({
 					key: i,
