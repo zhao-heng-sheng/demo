@@ -14,8 +14,8 @@ let node6 = node3.right = new TreeNode('F');
 let arr = []
 let forNode = (node) => {
 	if (!node) return;
-	arr.push(node.val)
 	if (node.left) forNode(node.left)
+	arr.push(node.val)
 	if (node.right) forNode(node.right)
 }
 forNode(node)
