@@ -19,7 +19,7 @@ let fn = (arr1, arr2, m, n) => {
 	let j = n-1
 	// arr1最后一位
 	let k = m+n-1
-	while((i>=0||j>=0)&&count<100){
+	while((i>=0||j>=0)||count<100){
 		
 		if(arr1[i]>arr2[j]){
 			arr1[k] = arr1[i]
