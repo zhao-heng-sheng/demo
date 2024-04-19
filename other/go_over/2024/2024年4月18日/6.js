@@ -4,15 +4,14 @@
 let nums = [2, 7, 11, 15]
 let target = 9
 
-let fn = (nums,target)=>{
-	let arr = []
-	let length = nums.length
-	for(let i=0;i<length-1;i++){
-		for(let j=1;j<length;j++){
-			if(arr[i]===arr[j]) continue;
-			if(arr[i]+arr[j]===target) return [i,j]
-		}
-	}
-	return '未找到'
+let fn = (nums, target) => {
+  let map = new Map();
+  let length = nums.length
+  for (let i = 0; i < length; i++) {
+    let diffKey = map.get(target - nums[i])
+    console.log(diffKey)
+    if (diffKey || diffKey == 0) return [i, diffKey]
+    map.set(nums[i], i)
+  }
 }
-fn(nums,target)
+console.log(fn(nums, target))
