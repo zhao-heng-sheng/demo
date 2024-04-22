@@ -19,17 +19,17 @@ let fn = (nums1, m, nums2, n) => {
     let k = m + n - 1;
     while (i >= 0 && j >= 0) {
         if (nums1[i] >= nums2[j]) {
-            nums[k] = nums1[i];
+            nums1[k] = nums1[i];
             i--;
             k--;
         } else {
-            nums[k] = nums2[j];
+            nums1[k] = nums2[j];
             j--;
             k--;
         }
     }
     while (j >= 0) {
-        nums[k] = nums2[j];
+        nums1[k] = nums2[j];
         j--;
         k--;
     }
