@@ -8,24 +8,34 @@
 let nums = [-1, 0, 1, 2, -1, -4];
 
 let fn = (nums) => {
-	let res = [];
-	let arr = nums.sort((a, b) => a - b);
-	let i = arr.length - 1;
-	let k = arr[0]
-	for (let i = 0; i < arr.length; i++) {
-		let j = i + 1;
-		let k = arr.length - 1;
-		let count = arr[i] + arr[j] + arr[k];
-		if (count === 0) res.push([arr[i], arr[j], arr[k]])
-		else {
-			while (j == 0) {
-				let count = arr[i] + arr[j] + arr[k];
-				if (count > 0) {
-					k--
-				}
-				if (count < 0) j++
-				if (count == 0) res.push([arr[i], arr[j], arr[k]])
-			}
-		}
-	}
+  let res = [];
+  let arr = nums.sort((a, b) => a - b);
+  let i = arr.length - 1;
+  let k = arr[0]
+  for (let i = 0; i < arr.length - 2; i++) {
+    let j = i + 1;
+    let k = arr.length - 1;
+    let count = arr[i] + arr[j] + arr[k];
+
+    let control = 0
+    if (count === 0) { res.push([arr[i], arr[j], arr[k]]) }
+    else {
+      console.log(i, j, k)
+      while ((j < k || j >= arr.length - 1) && control < 100 && j != k) {
+        control++
+        let count = arr[i] + arr[j] + arr[k];
+        console.log(count, i, j, k)
+        if (i == k || i == j) break;
+        if (count > 0) {
+          k--
+        } else if (count < 0) j++
+        else if (count == 0) {
+          res.push([arr[i], arr[j], arr[k]])
+          break;
+        }
+      }
+    }
+  }
+  return res
 };
+console.log(fn(nums))
