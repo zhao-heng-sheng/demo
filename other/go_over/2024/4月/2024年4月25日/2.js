@@ -41,8 +41,9 @@ let atoi = (str) => {
     if (!res) return 0;
     res = parseInt(res[0]);
     console.log(res);
+    if (isNaN(res)) return 0;
     if (res > 2 ** 31 - 1) return 2 ** 31 - 1;
     if (res < -(2 ** 31)) return -(2 ** 31);
     return res;
 };
-console.log(atoi("-91283472332"));
+console.log(atoi("-"));
