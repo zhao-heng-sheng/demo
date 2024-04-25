@@ -40,11 +40,12 @@ let fn = (node1, node2) => {
 
         if (node1.val >= node2.val) {
             if (!res) res = new ListNode(node2.val);
-            res.next = callback(node1, node2.next,res);
+            res.next = callback(node1, node2.next,res.next);
         } else {
             if (!res) res = new ListNode(node1.val);
-            res.next = callback(node2, node1.next,res);
+            res.next = callback(node2, node1.next,res.next);
         }
+        return res
     };
 
 
