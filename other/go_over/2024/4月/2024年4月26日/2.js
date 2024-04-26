@@ -19,21 +19,26 @@ let node = new ListNode(1);
 node.next = new ListNode(1);
 node.next.next = new ListNode(1);
 node.next.next.next = new ListNode(2);
+node.next.next.next.next = new ListNode(3);
+node.next.next.next.next.next = new ListNode(3);
 
+let count= 0
 let fn =(node)=>{
 	let current = node;
-	let next = node.next
-	while(next){
-    console.log(current.val,next.val);
+	let next = node.next;
+	while(next.next&&count<100){
+    count++
+    console.log(current.val,next.val,'yyy');
 		if(current.val===next.val){
       current = next
+    }else{
+      current.next = next
+      console.log(current,'zzz');
     }
     // console.log(current);
-		// current = current.next;
-		if(current) next = current.next
-    console.log(current,next);
+		next = current.next
+    console.log(current,next,'xxx');
 	}
-  console.log(current)
-	return node
+	return current
 }
 console.log(fn(node))
