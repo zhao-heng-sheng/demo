@@ -17,4 +17,23 @@ class ListNode{
 }
 let node = new ListNode(1);
 node.next = new ListNode(1);
-node.next.next = new ListNode(2);
+node.next.next = new ListNode(1);
+node.next.next.next = new ListNode(2);
+
+let fn =(node)=>{
+	let current = node;
+	let next = node.next
+	while(next){
+    console.log(current.val,next.val);
+		if(current.val===next.val){
+      current = next
+    }
+    // console.log(current);
+		// current = current.next;
+		if(current) next = current.next
+    console.log(current,next);
+	}
+  console.log(current)
+	return node
+}
+console.log(fn(node))
