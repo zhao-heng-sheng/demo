@@ -55,3 +55,6 @@ const mergeTwoLists = function (l1, l2) {
     // 返回起始结点
     return head.next;
 };
+
+mergeTwoLists(node1,node2)
+console.log(node1,node2)
