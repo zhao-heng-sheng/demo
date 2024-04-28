@@ -25,18 +25,12 @@ node.next.next.next.next.next = new ListNode(3);
 let count = 0
 
 let fn = (node) => {
-	let res = new ListNode()
-	res.next = node;
-	let i = res
-	let j = res.next
-	while (j&&count<100) {
-		count++
-		if (i.val === j.val) {
-			i.next = i.next.next
-			j = i.next
+	let current = node
+	while (current.next&&count<100) {
+		if (current.val===current.next.val) {
+			current.next = current.next.next
 		} else {
-			i = i.next;
-			j = i.next;
+			current = current.next
 		}
 	}
 	return node;
