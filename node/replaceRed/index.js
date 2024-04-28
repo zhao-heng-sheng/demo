@@ -1,10 +1,7 @@
 import keys from "./key.js"
-console.log(keys,'11');
-// 匹配第一个，替换，记录下标，继续匹配
-function replace(text,keys,reg){
-    let result = text
-    keys.forEach((key)=>{
-        result = result.replace(key,`<span class="red">${key}</span>`)
-    })
-    return result
-}
+import fs from 'fs'
+let targetHtml = fs.readFileSync('./target.html', 'utf8')
+let reg = new RegExp(keys.join("|"),"g")
+let res = targetHtml.replace(reg,`<span class="red">$&</span>`)
+
+fs.writeFileSync('./result.html', res)

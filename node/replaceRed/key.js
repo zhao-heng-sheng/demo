@@ -8,5 +8,5 @@ let keys = []
 elements.each((i, element) => {
     keys.push($(element).text())
 })
-
-export default keys
+// 简单点，直接去重匹配所有key并替换
+export default [...new Set(keys)]
