@@ -26,7 +26,8 @@ let fn = (node)=>{
 	let res = new List()
 	res.next = node;
 	let current = res;
-	while(current.next&&current.next.next){
+	while(current.next&&current.next.next&&count<100){
+		count++
 		if(current.next.val===current.next.next.val){
 			current.next = current.next.next.next
 		}else{
