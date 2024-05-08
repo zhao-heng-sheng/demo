@@ -1,3 +1,15 @@
+class ListNode {
+  constructor(val) {
+    this.val = val
+    this.next = null
+  }
+}
+let node1 = new ListNode(1)
+node1.next = new ListNode(2)
+node1.next.next = new ListNode(3)
+node1.next.next.next = new ListNode(4)
+node1.next.next.next.next = new ListNode(5)
+
 /**
  * @param {ListNode} head
  * @param {number} m
@@ -40,3 +52,4 @@ const reverseBetween = function (head, m, n) {
     // dummy.next 永远指向链表头结点
     return dummy.next;
 };
+console.log(reverseBetween(node1,2,4))
