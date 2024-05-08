@@ -20,3 +20,7 @@ node1.next = new ListNode(2)
 node1.next.next = new ListNode(3)
 node1.next.next.next = new ListNode(4)
 node1.next.next.next.next = new ListNode(5)
+
+let fn = (node,m,n)=>{
+  let dummy = new ListNode()
+}
