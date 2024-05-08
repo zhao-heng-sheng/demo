@@ -1,5 +1,6 @@
 import fs from 'fs'
 import * as cheerio from 'cheerio';
+import {escapeRegExpString} from './util.js'
 const html = fs.readFileSync('./source.html', 'utf-8')
 // console.log(html);
 const color = '#ff3300'
@@ -9,7 +10,7 @@ const elements = $(`[style*="${color}"]`)
 let keys = []
 elements.each((i, element) => {
     if($(element).text()){
-        keys.push($(element).text())
+        keys.push(escapeRegExpString($(element).text()))
     }
 })
 console.log(keys);
