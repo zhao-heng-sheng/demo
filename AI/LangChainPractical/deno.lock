@@ -3,9 +3,27 @@
   "packages": {
     "specifiers": {
       "npm:@langchain/core": "npm:@langchain/core@0.1.62_zod@3.23.8",
-      "npm:@langchain/openai": "npm:@langchain/openai@0.0.28_zod@3.23.8_openai@4.43.0"
+      "npm:@langchain/core@0.1.48": "npm:@langchain/core@0.1.48_zod@3.23.8",
+      "npm:@langchain/openai": "npm:@langchain/openai@0.0.28_zod@3.23.8_openai@4.43.0",
+      "npm:@langchain/openai@0.0.22": "npm:@langchain/openai@0.0.22_zod@3.23.8_openai@4.43.0"
     },
     "npm": {
+      "@langchain/core@0.1.48_zod@3.23.8": {
+        "integrity": "sha512-kGggyDbaYzCIPGkzvMvm/v0+lcTy1jlX6QZ7PSzUQFYJg5JK399x3AOYIDkbbUVxBAyHRgrWlxVQXH0FW3N6Bg==",
+        "dependencies": {
+          "ansi-styles": "ansi-styles@5.2.0",
+          "camelcase": "camelcase@6.3.0",
+          "decamelize": "decamelize@1.2.0",
+          "js-tiktoken": "js-tiktoken@1.0.11",
+          "langsmith": "langsmith@0.1.23_openai@4.43.0",
+          "ml-distance": "ml-distance@4.0.1",
+          "p-queue": "p-queue@6.6.2",
+          "p-retry": "p-retry@4.6.2",
+          "uuid": "uuid@9.0.1",
+          "zod": "zod@3.23.8",
+          "zod-to-json-schema": "zod-to-json-schema@3.23.0_zod@3.23.8"
+        }
+      },
       "@langchain/core@0.1.62_openai@4.43.0_zod@3.23.8": {
         "integrity": "sha512-PsBM/x0wxVvVPawKak2MFjxEneogipf212yO+rLf+2M3RDepCpYCdn1NBWgfmC+AWpmBYx/8zM7Y4QW7Kg2Wjw==",
         "dependencies": {
@@ -36,6 +54,16 @@
           "p-queue": "p-queue@6.6.2",
           "p-retry": "p-retry@4.6.2",
           "uuid": "uuid@9.0.1",
+          "zod": "zod@3.23.8",
+          "zod-to-json-schema": "zod-to-json-schema@3.23.0_zod@3.23.8"
+        }
+      },
+      "@langchain/openai@0.0.22_zod@3.23.8_openai@4.43.0": {
+        "integrity": "sha512-mkXRSeedwCzPnfvp1kvaGBXyVWTB86n77pUyw5bC9ka43/cPBHZdHlSnTZMuJi3H4RnV4CMxunaOlm+s7NWfxQ==",
+        "dependencies": {
+          "@langchain/core": "@langchain/core@0.1.62_openai@4.43.0_zod@3.23.8",
+          "js-tiktoken": "js-tiktoken@1.0.11",
+          "openai": "openai@4.43.0",
           "zod": "zod@3.23.8",
           "zod-to-json-schema": "zod-to-json-schema@3.23.0_zod@3.23.8"
         }
