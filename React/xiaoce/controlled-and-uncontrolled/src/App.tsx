@@ -1,47 +1,60 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+function App() {
+    return (
+        <Calendar
+            defaultValue={new Date("2023-1-1")}
+            onChange={(date:any) => {
+                console.log(date.toLocaleDateString());
+            }}
+        />
+    );
+}
 function Calendar(props: any) {
-    const { value, onChange } = props;
-    let changeValue = (date: Date) => {
+    const { value: propsValue, defaultValue, onChange } = props;
+    const [value, setValue] = useState(() => {
+        if (propsValue !== undefined) return propsValue;
+        return defaultValue;
+    });
+    const isFirstRender = useRef(true);
+    useEffect(() => {
+        if (propsValue === undefined && !isFirstRender.current) {
+            setValue(propsValue);
+        }
+        isFirstRender.current = false;
+    }, [propsValue]);
+    const mergedValue = propsValue ?? value;
+    function changeValue(date: Date) {
+        if (propsValue === undefined) {
+            setValue(date);
+        }
         onChange?.(date);
-    };
+    }
     return (
         <div>
-            {value.toLocaleDateString()}
+            {mergedValue?.toLocaleDateString()}
+            <div
+                onClick={() => {
+                    changeValue(new Date("2024-5-1"));
+                }}
+            >
+                2023-5-1
+            </div>
+            <div
+                onClick={() => {
+                    changeValue(new Date("2024-5-2"));
+                }}
+            >
+                2023-5-2
+            </div>
             <div
                 onClick={() => {
                     changeValue(new Date("2024-5-3"));
                 }}
             >
-                2024-5-3
-            </div>
-            <div
-                onClick={() => {
-                    changeValue(new Date("2024-5-4"));
-                }}
-            >
-                2024-5-4
-            </div>
-            <div
-                onClick={() => {
-                    changeValue(new Date("2024-5-5"));
-                }}
-            >
-                2024-5-5
+                2023-5-3
             </div>
         </div>
-    );
-}
-function App() {
-    const [value, setValue] = useState(new Date("2024-5-1"));
-    return (
-        <Calendar
-            value={value}
-            onChange={(date: any) => {
-                setValue(date);
-                console.log(date.toLocaleDateString());
-            }}
-        />
     );
 }
 export default App;
