@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 import {escapeRegExpString} from './util.js'
 const html = fs.readFileSync('./source.html', 'utf-8')
 // console.log(html);
-const color = '#ff3300'
+const color = '#FF3300'
 const $ = cheerio.load(html)
 const elements = $(`[style*="${color}"]`)
 // const elements = $(`#u372`)
