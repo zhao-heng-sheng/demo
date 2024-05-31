@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResizeObserver</title>
+</head>
+<body>
+  <div id="xxx">
+    <p>xxx</p>
+    <p>xxx</p>
+    <p>111</p>
+  </div>
+  <div id="zzz">
+    <p>zzz</p>
+  </div>
+  <script>
+    let x = new ResizeObserver(entries=>{
+      console.log(entries)
+    })
+    x.observe(document.getElementById('xxx'))
+    x.observe(document.getElementById('zzz'))
+  </script>
+</body>
+</html>

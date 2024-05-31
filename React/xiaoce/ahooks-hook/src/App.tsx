@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useSize } from "ahooks";
+import useSize from "./hooks/useSize";
 
 function App() {
     const ref = useRef<HTMLDivElement>(null);
