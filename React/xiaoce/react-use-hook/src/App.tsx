@@ -1,21 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useHover from './hooks/useHover'
+import useScrolling from './hooks/useScrolling'
 
 function App() {
-    const element = (hovered)=>{
-      return (
-      <div>
-        hover me! {hovered&&'thanks'}
-      </div>
-      )
-    }
-    const [hoverable,hovered] = useHover(element)
+    const scrollRef = useRef(null)
+    const scrolling = useScrolling(scrollRef)
     return (
       <div>
-        {hoverable}
-        <div>{hovered? 'hovered':'xx'}</div>
+        <div>{scrolling?'滚动中':'没有滚动'}</div>
+        <div ref={scrollRef} style={{height:'200px',overflow:'auto'}}>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+          <div>xxx</div>
+        </div>
       </div>
     )
+
 }
 
 export default App;
