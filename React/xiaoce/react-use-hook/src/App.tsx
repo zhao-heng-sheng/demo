@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import {useHover} from 'react-use'
+import useHover from './hooks/useHover'
 
 function App() {
     const element = (hovered)=>{
