@@ -1,9 +1,22 @@
 <template>
-    <div>222</div>
+    <div>
+        222
+        <p>{{ a }}</p>
+    </div>
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {};
+    },
+    props: {
+        a: {
+            type: String,
+            default: "",
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped></style>

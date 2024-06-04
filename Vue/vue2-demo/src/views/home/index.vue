@@ -2,7 +2,7 @@
     <div>
         xxx
         <div>
-            <component :is="component"></component>
+            <component :is="component" a="123"></component>
         </div>
     </div>
 </template>
