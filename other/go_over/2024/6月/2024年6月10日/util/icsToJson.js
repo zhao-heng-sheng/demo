@@ -1,8 +1,6 @@
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc.js";
-import timezone from "dayjs/plugin/timezone.js";
-dayjs.extend(utc);
-dayjs.extend(timezone);
+import customParseFormat from 'dayjs/plugin/customParseFormat.js'
+dayjs.extend(customParseFormat);
 const NEW_LINE = /\r\n|\n|\r/;
 
 const EVENT = "VEVENT";
@@ -68,10 +66,10 @@ const icsToJson = (icsData) => {
                 if (value === EVENT) array.push(currentObj);
                 break;
             case START_DATE:
-                currentObj[keyMap[START_DATE]] = dayjs(value).format("YYYY-MM-DD HH:mm:ss");
+                currentObj[keyMap[START_DATE]] = dayjs(value,'YYYYMMDDTHHmmssZ').format("YYYY-MM-DD HH:mm:ss");
                 break;
             case END_DATE:
-                currentObj[keyMap[END_DATE]] = dayjs(value).format("YYYY-MM-DD HH:mm:ss");
+                currentObj[keyMap[END_DATE]] = dayjs(value,'YYYYMMDDTHHmmssZ').format("YYYY-MM-DD HH:mm:ss");
                 break;
             case DESCRIPTION:
                 if (!isAlarm) currentObj[keyMap[DESCRIPTION]] = clean(value);
