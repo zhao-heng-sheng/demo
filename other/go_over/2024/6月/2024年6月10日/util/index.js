@@ -1,4 +1,6 @@
 import icsToJson from "./icsToJson.js";
+import schedule from "node-schedule";
+
 /* 
 {
     startDate: '2024-04-13 12:05:00',
@@ -15,3 +17,7 @@ export const convert = async (fileLocation) => {
     const data = icsToJson(icsData);
     return data;
 };
+
+export const scheduleEvent = async (fileLocation, callback) => {
+    schedule.scheduleJob(data.startDate, callback);
+}
