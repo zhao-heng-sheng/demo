@@ -2,6 +2,11 @@
   "description": "",
   "type": "module",
   "dependencies": {
+    "@wcferry/core": "^0.1.6",
+    "@wcferry/ws": "^0.0.1",
     "dayjs": "^1.11.11"
+  },
+  "scripts": {
+    "start": "node 2.js"
   }
 }
