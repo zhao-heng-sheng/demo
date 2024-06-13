@@ -9,9 +9,10 @@ let browser = await puppeteer.launch({
 });
 let page = await browser.newPage();
 await page.goto("https://areschang.top/web/html/");
-await page.waitForSelector("group a");
+// await page.waitForNavigation({waitUntil:'networkidle2'})
+await page.waitForSelector('.group')
 await page.evaluate(()=>{
-    let listItems = document.querySelectorAll('group a')
+    let listItems = document.querySelectorAll('.group a')
     for(let a of listItems){
         if(a.textContent.includes('语义化')){
           a.click()
