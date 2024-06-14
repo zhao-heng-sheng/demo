@@ -15,7 +15,7 @@ await page.evaluate(()=>{
     let listItems = document.querySelectorAll('.group a')
     for(let a of listItems){
         if(a.textContent.includes('语义化')){
-          a.click()
+          a.click
           break;
         }
     }
