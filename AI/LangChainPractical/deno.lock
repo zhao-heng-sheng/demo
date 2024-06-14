@@ -5,7 +5,8 @@
       "npm:@langchain/core": "npm:@langchain/core@0.1.62_zod@3.23.8",
       "npm:@langchain/core@0.1.48": "npm:@langchain/core@0.1.48_zod@3.23.8",
       "npm:@langchain/openai": "npm:@langchain/openai@0.0.28_zod@3.23.8_openai@4.43.0",
-      "npm:@langchain/openai@0.0.22": "npm:@langchain/openai@0.0.22_zod@3.23.8_openai@4.43.0"
+      "npm:@langchain/openai@0.0.22": "npm:@langchain/openai@0.0.22_zod@3.23.8_openai@4.43.0",
+      "npm:zod": "npm:zod@3.23.8"
     },
     "npm": {
       "@langchain/core@0.1.48_zod@3.23.8": {
@@ -367,7 +368,8 @@
       "npm:@langchain/core@0.1.48",
       "npm:@langchain/openai@0.0.22",
       "npm:langchain@0.1.28",
-      "npm:lodash@4.17.21"
+      "npm:lodash@4.17.21",
+      "npm:zod"
     ]
   }
 }
