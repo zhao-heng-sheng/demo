@@ -1,5 +1,6 @@
 {
   "imports": {
+    "cheerio": "npm:/cheerio",
     "lodash": "npm:/lodash@4.17.21",
     "dotenv": "https://deno.land/std@0.220.0/dotenv/mod.ts",
     "langchain": "npm:/langchain@0.1.29",
@@ -11,7 +12,6 @@
     "zod": "npm:/zod",
     "pdf-parse": "npm:/pdf-parse/lib/pdf-parse.js",
     "ignore": "npm:/ignore",
-    "cheerio": "npm:/cheerio",
     "vectordb": "npm:/vectordb",
     "@lancedb/lancedb": "npm:/@lancedb/lancedb",
     "@langchain/community/": "npm:/@langchain/community/",
