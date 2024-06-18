@@ -18,8 +18,8 @@ class myPromise {
         this.state = "rejected";
         this.result = error;
     }
-    static then(fn) {
-        fn(this.result);
+    then(fn) {
+        fn.bind(this)(this.result);
     }
 }
 
