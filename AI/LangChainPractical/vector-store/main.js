@@ -5,21 +5,25 @@ import { FaissStore } from "@langchain/community/vectorstores/faiss";
 import { OpenAIEmbeddings } from "@langchain/openai";
 
 const run = async () => {
-  const loader = new TextLoader("../data/kong.txt");
-  const docs = await loader.load();
+    const loader = new TextLoader("./data/kong.txt");
+    const docs = await loader.load();
 
-  const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 100,
-    chunkOverlap: 20,
-  });
+    const splitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 100,
+        chunkOverlap: 20,
+    });
 
-  const splitDocs = await splitter.splitDocuments(docs);
+    const splitDocs = await splitter.splitDocuments(docs);
 
-  const embeddings = new OpenAIEmbeddings();
-  const vectorStore = await FaissStore.fromDocuments(splitDocs, embeddings);
+    const embeddings = new OpenAIEmbeddings({
+        configuration: {
+            baseURL: process.env.baseURL,
+        },
+    });
+    const vectorStore = await FaissStore.fromDocuments(splitDocs, embeddings);
 
-  const directory = "../db/kongyiji";
-  await vectorStore.save(directory);
+    const directory = "./db/kongyiji";
+    await vectorStore.save(directory);
 };
 
 run();
