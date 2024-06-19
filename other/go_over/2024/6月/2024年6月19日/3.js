@@ -14,7 +14,6 @@ for (let i = 0; i < 3; i++)
     });
 
 console.log("macro [8]");
-
 // 请说出答案
 /* Result:
 stack [1]
