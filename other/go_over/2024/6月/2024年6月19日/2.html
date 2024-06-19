@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Event Loop Example</title>
+    </head>
+    <body>
+        <button id="myButton">Click me</button>
+        <script>
+            document.getElementById("myButton").addEventListener("click", () => {
+                console.log("Button clicked (Macro Task)");
+
+                // Schedule a micro task
+                Promise.resolve().then(() => {
+                    console.log("Promise resolved (Micro Task)");
+                });
+
+                // Schedule another macro task
+                setTimeout(() => {
+                    console.log("setTimeout callback (Macro Task)");
+                }, 0);
+            });
+        </script>
+    </body>
+</html>
