@@ -1,20 +1,34 @@
-Function.prototype.bind2 = function(obj, ...args) {
-  let _this = this;
-  let fn = function(...args2){
-	  return _this.call(obj,...args,...args2)
-  }
-  return fn;
-}
-let obj = {
-  name:"叮叮",
-  age:"18",
+Function.prototype.bind2 = function (obj, ...args) {
+    let _this = this;
+    let fn = function (...args2) {
+        console.log(this,'123')
+        if(new.target===fn) return this.call({},...args,...args2)
+        return _this.call(obj, ...args, ...args2);
+    };
+    return fn;
+};
+var value = 2;
+
+var foo = {
+    value: 1,
+};
+
+function bar(name, age) {
+    this.habit = "shopping";
+    console.log(this.value);
+    console.log(name);
+    console.log(age);
 }
 
-let fn = function(name,age,gender){
-  console.log(this)
-  console.log(this.name)
-  this.gender = '男'
-  console.log(a,b,c)
-}
-let newFn = fn.bind(obj,1,2)
-newFn('男')
+bar.prototype.friend = "kevin";
+
+var bindFoo = bar.bind2(foo, "daisy");
+
+var obj = new bindFoo("18");
+// undefined
+// daisy
+// 18
+console.log(obj.habit);
+console.log(obj.friend);
+// shopping
+// kevin
