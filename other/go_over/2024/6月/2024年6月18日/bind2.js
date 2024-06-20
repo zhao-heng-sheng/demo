@@ -1,7 +1,6 @@
 Function.prototype.bind2 = function (obj, ...args) {
     let _this = this;
     let fn = function (...args2) {
-        console.log(this,'123')
         if(new.target===fn) return this.call({},...args,...args2)
         return _this.call(obj, ...args, ...args2);
     };
