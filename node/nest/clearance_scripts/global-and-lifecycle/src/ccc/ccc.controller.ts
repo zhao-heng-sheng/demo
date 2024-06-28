@@ -1,11 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  OnModuleInit,
+  OnApplicationBootstrap,
+} from '@nestjs/common';
 import { CccService } from './ccc.service';
 import { CreateCccDto } from './dto/create-ccc.dto';
 import { UpdateCccDto } from './dto/update-ccc.dto';
 
 @Controller('ccc')
-export class CccController {
+export class CccController implements OnModuleInit, OnApplicationBootstrap {
   constructor(private readonly cccService: CccService) {}
+
+  onModuleInit() {
+    console.log('CccController  Module initialized');
+  }
+  onApplicationBootstrap() {
+    console.log('CccController  Module Application bootstrapped');
+  }
 
   @Post()
   create(@Body() createCccDto: CreateCccDto) {

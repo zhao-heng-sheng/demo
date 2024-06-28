@@ -1,9 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  OnApplicationBootstrap,
+  OnModuleInit,
+} from '@nestjs/common';
 import { CreateCccDto } from './dto/create-ccc.dto';
 import { UpdateCccDto } from './dto/update-ccc.dto';
 
 @Injectable()
-export class CccService {
+export class CccService implements OnModuleInit, OnApplicationBootstrap {
+  onModuleInit() {
+    console.log('CccService  Module initialized');
+  }
+  onApplicationBootstrap() {
+    console.log('CccService  Module Application bootstrapped');
+  }
   create(createCccDto: CreateCccDto) {
     return 'This action adds a new ccc';
   }
