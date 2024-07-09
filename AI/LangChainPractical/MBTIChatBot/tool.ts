@@ -13,6 +13,6 @@ const mbtiTool = new DynamicStructuredTool({
   }),
   func:async ({type,question})=> {
     const info = mbtiInfo[type]
-    const res = 
+    const res = await mbitChain.
   }
 });
