@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@langchain/baidu-qianfan": "^0.0.1"
+	}
+}
