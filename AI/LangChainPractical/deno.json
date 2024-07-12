@@ -6,6 +6,8 @@
     "langchain": "npm:/langchain@0.1.29",
     "langchain/": "npm:/langchain@0.1.29/",
     "@langchain/openai": "npm:/@langchain/openai@0.0.22",
+    "@langchain/baidu-qianfan": "npm:/@langchain/baidu-qianfan@0.0.1",
+    "@langchain/baidu-qianfan/": "npm:/@langchain/baidu-qianfan@0.0.1/",
     "@langchain/openai/": "npm:/@langchain/openai@0.0.22/",
     "@langchain/core": "npm:/@langchain/core@0.1.48",
     "@langchain/core/": "npm:/@langchain/core@0.1.48/",
