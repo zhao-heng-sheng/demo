@@ -1,8 +1,8 @@
 {
-  "name": "2024",
+  "name": "2024年7月18日",
   "version": "1.0.0",
   "description": "",
-  "main": "utils.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dayjs": "^1.11.11",
+    "dotenv": "^16.4.5",
     "minio": "^8.0.1"
   }
 }
