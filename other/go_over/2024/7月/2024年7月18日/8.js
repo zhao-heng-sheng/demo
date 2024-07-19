@@ -1,5 +1,6 @@
 import * as Minio from 'minio'
 import dotenv  from 'dotenv'
+import {createWriteStream} from 'fs'
 dotenv.config()
 console.log(process.env)
 let minioClient = new Minio.Client({
@@ -9,10 +10,11 @@ let minioClient = new Minio.Client({
   accessKey: process.env.accessKey,
   secretKey: process.env.secretKey
 })
-function put (){
-  minioClient.fPutObject('zhaohs', 'test.png', 'test.png', function(err, etag) {
+function get (){
+  minioClient.getObject('zhaohs', 'test.png', function(err,stream) {
     if (err) return console.log(err)
-    console.log('File uploaded successfully.')
+      stream.pipe(createWriteStream('./zxcv.png'))
+    console.log('File downloaded successfully.')
   })
 }
-put()
+get()
