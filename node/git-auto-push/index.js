@@ -4,6 +4,7 @@ import schedule from "node-schedule";
 import clipboard from "clipboardy";
 import config from "./config.js";
 let { rule, folders } = config;
+shell.config.silent = true;
 folders.forEach((folderUrl) => {
   gitPush(folderUrl);
 });
@@ -14,18 +15,19 @@ schedule.scheduleJob(rule, () => {
 })
 function gitPush(folderUrl) {
   shell.cd(folderUrl);
-  let isPullSuccess = shell.exec("git pull",{silent:true});
+  let isPullSuccess = shell.exec("git pull");
+  
   if (isPullSuccess.code !== 0) {
     failNotify("仓库拉取失败", isPullSuccess.stderr, folderUrl);
     return false;
   }
-  let isAddSuccess = shell.exec("git add .",{silent:true});
+  let isAddSuccess = shell.exec("git add .");
   if (isAddSuccess.code !== 0) {
     failNotify("代码暂存失败", isAddSuccess.stderr, folderUrl);
     return false;
   }
-  shell.exec(`git commit -m 'auto push |  ${new Date().toLocaleString()}'`,{silent:true});
-  isPullSuccess = shell.exec("git push",{silent:true});
+  shell.exec(`git commit -m 'auto push |  ${new Date().toLocaleString()}'`);
+  isPullSuccess = shell.exec("git push");
   if (isPullSuccess.code !== 0) {
     failNotify("仓库推送失败", isPullSuccess.stderr, folderUrl);
     return false;
