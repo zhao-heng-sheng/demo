@@ -4,5 +4,7 @@ export default {
     minute: 50,
   },
   // 需要执行的文件夹
-  folders: [],
+  folders: [
+    `C:/project/demo`
+  ],
 };
