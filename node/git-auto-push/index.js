@@ -14,18 +14,18 @@ schedule.scheduleJob(rule, () => {
 })
 function gitPush(folderUrl) {
   shell.cd(folderUrl);
-  let isPullSuccess = shell.exec("git pull");
+  let isPullSuccess = shell.exec("git pull",{silent:true});
   if (isPullSuccess.code !== 0) {
     failNotify("仓库拉取失败", isPullSuccess.stderr, folderUrl);
     return false;
   }
-  let isAddSuccess = shell.exec("git add .");
+  let isAddSuccess = shell.exec("git add .",{silent:true});
   if (isAddSuccess.code !== 0) {
     failNotify("代码暂存失败", isAddSuccess.stderr, folderUrl);
     return false;
   }
-  shell.exec(`git commit -m 'auto push |  ${new Date().toLocaleString()}'`);
-  isPullSuccess = shell.exec("git push");
+  shell.exec(`git commit -m 'auto push |  ${new Date().toLocaleString()}'`,{silent:true});
+  isPullSuccess = shell.exec("git push",{silent:true});
   if (isPullSuccess.code !== 0) {
     failNotify("仓库推送失败", isPullSuccess.stderr, folderUrl);
     return false;
