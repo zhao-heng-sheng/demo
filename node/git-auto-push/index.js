@@ -1,6 +1,7 @@
 import shell from "shelljs";
 import notifier from "node-notifier";
-import schedule from "node-schedule";
+import  schedule from "node-schedule";
+import clipboard from 'clipboardy'
 // import {rule,folders} from './config.js'
 // const job = schedule.scheduleJob(rule, function () {
 //   shell.exec("git pull", function (code, stdout, stderr) {
@@ -39,25 +40,32 @@ function gitPush(folderUrl) {
     failNotify("仓库拉取失败", isPullSuccess.stderr, folderUrl);
     return false;
   }
-  shell.exec("git add .");
+  let isAddSuccess = shell.exec("git add .");
+  if (isAddSuccess.code !== 0){
+    failNotify("代码暂存失败", isAddSuccess.stderr, folderUrl);
+    return false;
+  }
   shell.exec(`git commit -m 'auto push | ' ${new Date().toLocaleString()}`);
   isPullSuccess = shell.exec("git push");
   if (isPullSuccess.code !== 0){
     failNotify("仓库推送失败", isPullSuccess.stderr, folderUrl);
     return false;
   }
+
 }
 function failNotify(title, failMessage, folderUrl) {
   notifier.notify(
     {
       title: title,
       message: `${failMessage}
-    点击查看文件夹`,
+    点击复制报错信息`,
       wait: true,
     },
     (err, response, metadata) => {
       if (metadata.action === "clicked") {
-        shell.exec(`start ${folderUrl}`);
+        // shell.exec(`start ${folderUrl}`);
+        // shell.exec(`echo ${failMessage} | clip`);
+        clipboard.writeSync(failMessage)
       }
     }
   );
@@ -65,4 +73,4 @@ function failNotify(title, failMessage, folderUrl) {
 gitPush("C:/project/demo");
 setInterval(()=>{
   console.log('111')
-},10000000)
+},100000)
