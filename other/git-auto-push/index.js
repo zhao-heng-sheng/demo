@@ -14,6 +14,7 @@ schedule.scheduleJob(rule, () => {
   });
 })
 function gitPush(folderUrl) {
+  // 用pm2 每次执行都会开新的shell，不知道怎么搞了
   shell.cd(folderUrl);
   let isPullSuccess = shell.exec("git pull");
   
