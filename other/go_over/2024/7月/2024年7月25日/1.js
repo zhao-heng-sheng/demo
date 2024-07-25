@@ -1,7 +1,4 @@
-import shell from 'shelljs'
-let chain = shell.exec('git pull')
-chain.exec('git add .')
-chain.exec('git commit -m "update"')
+let shell = require("shelljs");
 setInterval(() => {
-  console.log('111')
-},100000)
+  shell.exec("node --version");
+}, 8000);

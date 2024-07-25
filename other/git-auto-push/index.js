@@ -5,6 +5,7 @@ import clipboard from "clipboardy";
 import config from "./config.js";
 let { rule, folders } = config;
 shell.config.silent = true;
+let shellWindow = null;
 folders.forEach((folderUrl) => {
   gitPush(folderUrl);
 });
@@ -14,7 +15,7 @@ schedule.scheduleJob(rule, () => {
   });
 })
 function gitPush(folderUrl) {
-  // 用pm2 每次执行都会开新的shell，不知道怎么搞了
+  // 用pm2 每次执行都会开新的终端，不知道怎么搞了
   shell.cd(folderUrl);
   let isPullSuccess = shell.exec("git pull");
   
