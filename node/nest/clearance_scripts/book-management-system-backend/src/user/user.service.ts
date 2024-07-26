@@ -10,7 +10,6 @@ export class UserService {
   @Inject(DbService)
   private dbService: DbService;
   async register(registerUserDto:RegisterUserDto){
-    console.log(User)
     const users:User[] = await this.dbService.read()
     const foundUser = users.find(item=>item.username===registerUserDto.username)
     if(foundUser){
@@ -22,5 +21,17 @@ export class UserService {
     users.push(user)
     await this.dbService.write(users)
     return user;
+  }
+
+  async login(loginUserDto){
+    const users:User[] = await this.dbService.read()
+    const foundUser = users.find(item=>item.username===loginUserDto.username)
+    if(!foundUser){
+      throw new BadRequestException("用户不存在")
+    }
+    if(foundUser.password!==loginUserDto.password){
+      throw new BadRequestException("密码错误")
+    }
+    return foundUser;
   }
 }
