@@ -1,0 +1,21 @@
+{
+  "name": "2024年7月29日",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node 1.js --o 123 -x xcv",
+    "start:dev": "cross-env xx=123 node 1.js ",
+    "start:pdf": "cross-env xx=123 node 2.js "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "unoconv-promise": "^1.0.8"
+  }
+}
